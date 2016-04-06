@@ -37,9 +37,30 @@ Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo
 
 onde $\theta$ é o angulo de inclinação do pêndulo em relação a origem (linha tracejada).
 
+Este pêndulo pode ser modelado eletricamente pelo seguinte circuito:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{../Images/Pendulo-Circuito.pdf}
+\caption{Modelo elétrico do pêndulo}
+\label{fig:pendulo}
+\end{figure}
+
+onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
+
+A figura ... representa o fluxo da aquisição de dados utilizado
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Images/Pendulo-Fluxograma.pdf}
+\caption{Fluxo de aquisição de dados do sistema.}
+$E_n$ indica as etapas de aquisição de dados.
+\label{fig:pendulo}
+\end{figure}
+
 \todo{equacionamento do pendulo}
 
-Primeiramente, a fim de obter uma curva de calibração da estrutura, se fez necessário levantar estimativas do valor de resistência \todo{ou tensão} do potenciômetro em função do seu ângulo de oscilação. A fim de conseguir realizar o projeto em tempo hábil \todo{colocar isso mesmo?}, optamos por realizar as medidas em intervalos de 10 em 10 graus de inclinação no intervalo de -80º (oscilação ao lado esquerdo) e 80º (oscilação ao lado direito).
+Primeiramente, a fim de obter uma curva de calibração da estrutura, se fez necessário levantar estimativas do valor de resistência \todo{ou tensão} do potenciômetro em função do seu ângulo de oscilação. A fim de conseguir realizar o projeto em tempo hábil, \todo{colocar isso mesmo?} optamos por realizar as medidas em intervalos de 10 em 10 graus de inclinação no intervalo de -80º (oscilação ao lado esquerdo) e 80º (oscilação ao lado direito).
 
 Com estes dados, e assumindo que o potenciômetro seja linear, podemos assumir que os valores intermediários de tensão mensuradas são proporcionais aos seus limites mensurados (valor medido superior e inferior).
 
