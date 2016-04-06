@@ -1,5 +1,10 @@
 \documentclass[12pt,a4paper]{instrumentacao}
 
+\graphicspath{
+	{../Resources/Images/}
+	{../Resources/Mathematica/images/}
+}
+
 \title{Alguns dos Efeitos Físicos Explorados em Sensores}
 \author{Rogiel Sulzbach \and Rodrigo de Castro Silveira \and Yi Chen Wu}
 \startdate{28 de março de 2016}
@@ -30,7 +35,7 @@ Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.4\textwidth]{../Images/Pendulo.pdf}
+\includegraphics[width=0.4\textwidth]{Pendulo.pdf}
 \caption{Estrutura do pêndulo}
 \label{fig:pendulo}
 \end{figure}
@@ -41,7 +46,7 @@ Este pêndulo pode ser modelado eletricamente pelo seguinte circuito:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{../Images/Pendulo-Circuito.pdf}
+\includegraphics[width=0.6\textwidth]{Pendulo-Circuito.pdf}
 \caption{Modelo elétrico do pêndulo}
 \label{fig:pendulo}
 \end{figure}
@@ -52,7 +57,7 @@ A figura ... representa o fluxo da aquisição de dados utilizado
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../Images/Pendulo-Fluxograma.pdf}
+\includegraphics[width=\textwidth]{Pendulo-Fluxograma.pdf}
 \caption{Fluxo de aquisição de dados do sistema.}
 $E_n$ indica as etapas de aquisição de dados.
 \label{fig:pendulo}
@@ -111,7 +116,7 @@ Observa-se que cada medida foi feita com duas repetições e de forma totalmente
 Podemos, adicionalmente, plotar estes pontos em um gráfico para melhor observar o formato da curva:
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{../Mathematica/images/Pendulo-Pontos.pdf}
+\includegraphics[width=\textwidth]{Pendulo-Pontos.pdf}
 \caption{Gráfico exibindo as medidas realizadas}
 \label{fig:pendulo-medidas}
 \end{figure}
@@ -146,7 +151,7 @@ Após realizar a exportação dos dados utilizamos o software Wolfram Mathematic
 
 \chapter*{Anexos}
 \section{Mathematica}
-\includenotebook{../Mathematica/Experimento 1-1.pdf}{Experimento 1}
+\includenotebook{../Resources/Mathematica/Experimento 1-1.pdf}{Experimento 1}
 
 \section{LabVIEW}
 
