@@ -3,6 +3,7 @@
 \ProcessOptions\relax
 \LoadClass[]{report}
 
+\RequirePackage[T1]{fontenc}
 \RequirePackage[brazil]{babel}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{graphicx}
@@ -19,6 +20,20 @@
 \RequirePackage{indentfirst}
 \RequirePackage[margin=1.75cm]{geometry}
 \RequirePackage{fancyhdr}
+
+\RequirePackage{array}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+
+% desativado porque ler TNR é muito ruim! lembrar de desativar antes de imprimir
+\RequirePackage{mathptmx}
+
+\RequirePackage{grffile}
+\RequirePackage{pdfpages}
+\RequirePackage{pbox}
+
 
 %% TEMPLATE ARGUMENTS
 \newcommand{\institute}[1]{%
@@ -61,6 +76,17 @@
 }
 \newcommand{\theheadertext}[0]{}
 
+
+% Attachments
+\newcommand{\includenotebook}[2]{
+	\includepdf[pages={1},pagecommand={
+		\pagestyle{fancy}
+		\subsection{#2}
+	}]{#1}
+	\includepdf[pages={2-},pagecommand={
+		\pagestyle{fancy}
+	}]{#1}
+}
 
 % CUSTOM COMMANDS
 \newcommand{\emailaddress}[2]{\href{mailto:#2}{#2} (#1)}
