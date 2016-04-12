@@ -62,6 +62,8 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 
 onde $R(\theta)$ é a resistência elétrica em do pêndulo $\Omega$ para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de 0 graus, $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$ relativa à sua posição de repouso.
 
+Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905}\todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos.
+
 \subsection{Aquisição da resposta temporal do pêndulo}
 
 Para obter a resposta temporal do pêndulo, utilizamos um mecanismo de aquisição de dados conforme a figura \ref{fig:pendulo-fluxo-medidas}:
@@ -103,7 +105,28 @@ A função de transferência para o sensor já foi obtida no experimento anterio
 
 onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o offset de angulo correspondente ao offset inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
 
-A função de transferência do buffer, por definição é constante e igual a um. Uma vez que o amplificador utilizado é de ganho 1 e 
+A função de transferência do buffer de tensão é simples de modelar, uma vez que seu comportamento consiste em não realizar nenhuma alteração no valor de entrada, pode-se modelar usando uma função onde e saída é igual ao valor de tensão da entrada, conforme a equação \ref{eq:pendulo-tf-buffer}:
+
+\begin{equation}
+	V_{\text{buffer}} = 1 \times V_{\text{in}}	
+	\label{eq:pendulo-tf-buffer}
+\end{equation}
+
+\todo{como modelar a TF do filtro?}
+
+Por fim, pode-se calcular a função de transferência equivalente do sistema que é a concatenação de todas funções de transferência na sequência em que foram conectadas na cadeia de medida, a equação \ref{eq:pendulo-tf-concat} expressa esta relação de forma matemática:
+
+\begin{equation}
+	\theta = V_{\text{buffer}}(V_{\text{sensor}}(V_{\text{medido}}))
+	\label{eq:pendulo-tf-concat}
+\end{equation}
+
+Substituindo-se estes valores, temos que a função de transferência completa do sistema é dada por \label{eq:pendulo-tf-bloco}
+
+\begin{equation}
+	\theta = V_{\text{sensor}}(V) = \theta_0 + \theta_1 \times V
+	\label{eq:pendulo-tf-bloco}
+\end{equation}
 
 \chapter{Resultados e Discussões}
 
@@ -145,7 +168,7 @@ Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, levan
 \end{tabular}
 \label{tab:pendulo-calibracao}
 \end{table}
-\todo{okay, essa tabela ta totalmente errada. temos que refazer o experimento.} % eu fiz uma multiplicação mágica pra ajustar os valores que teríamos medido, mas precisamos mesmo fazer a medida certa dessa coisa, ou o Balbinot não vai aceitar
+\todo{essa tabela ta totalmente errada. temos que refazer o experimento.} % eu fiz uma multiplicação mágica pra ajustar os valores que teríamos medido, mas precisamos mesmo fazer a medida certa dessa coisa, ou o Balbinot não vai aceitar
 
 Observa-se que cada medida foi feita com duas repetições e de forma totalmente aleatória.
 
@@ -179,7 +202,7 @@ A fim de obter uma curva de tensão elétrica em função do tempo, desenvolvemo
 
 \todo{adicionar um print do labview}
 
-Após realizar a exportação dos dados utilizamos o software Wolfram Mathematica para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primeiramente, precisamos notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Primeiramente, desejamos converter estes valores de tensão elétrica em uma posição angular do pêndulo e para isto, utilizamos a função inversa calculada na equação \ref{eq:pendulo-model-inverse} e a aplicamos a cada ponto medido pelo DAQ pelo LABView.
+Após realizar a exportação dos dados utilizamos o software Wolfram Mathematica para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primeiramente, precisamos notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Primeiramente, desejamos converter estes valores de tensão elétrica em uma posição angular do pêndulo e para isto, utilizamos a função inversa calculada na equação \ref{eq:pendulo-model-inverse} e a aplicamos a cada ponto medido pelo DAQ pelo LABView. \todo{precisa usar o MATLAB aqui, arrumar o texto}
 
 
 
@@ -195,11 +218,17 @@ Após realizar a exportação dos dados utilizamos o software Wolfram Mathematic
 
 \begin{thebibliography}{9}
 \bibitem{mathematica-numerial-precision} \url{https://reference.wolfram.com/language/tutorial/NumericalPrecision.html}, acessado em 16 de março de 2016
-\bibitem{ref1} Sobrenome, A.B.; Sobrenome, C.D. Title of the cited article. Journal Title 2007, 6, 100-110. 
-\bibitem{ref2} Balbinot, A.; Brusamarello, V.J.. Title of the cited article. Journal Title 2007, 6, 100-110. 
-\bibitem{ref3} Author, A.; Author, B. Title of the chapter. In Book Title, 2nd ed.; Editor, A., Editor, B., Eds.; Publisher: Publisher Location, Country, 2007; Volume 3, pp. 154-196.
-\bibitem{ref4} Author, A.; Author, B. Book Title, 3rd ed.; Publisher: Publisher Location, Country, 2008; 
-pp. 154-196.
+
+%\bibitem{ref1} Sobrenome, A.B.; Sobrenome, C.D. Title of the cited article. Journal Title 2007, 6, 100-110. 
+%\bibitem{ref2} Balbinot, A.; Brusamarello, V.J.. Title of the cited article. Journal Title 2007, 6, 100-110. 
+%\bibitem{ref3} Author, A.; Author, B. Title of the chapter. In Book Title, 2nd ed.; Editor, A., Editor, B., Eds.; Publisher: Publisher Location, Country, 2007; Volume 3, pp. 154-196.
+%\bibitem{ref4} Author, A.; Author, B. Book Title, 3rd ed.; Publisher: Publisher Location, Country, 2008; 
+%pp. 154-196.
+
+\todo{formatar essas referencias da forma correta... nao sei como ele quer}
+\bibitem{datasheet-lm7805} Datasheet oferecido pelo fabricante do regulador de tensão LM7805
+\bibitem{datasheet-lm7905} Datasheet oferecido pelo fabricante do regulador de tensão LM7905
+
 \todo{arrumar bibliografia}
 
 \end{thebibliography}
