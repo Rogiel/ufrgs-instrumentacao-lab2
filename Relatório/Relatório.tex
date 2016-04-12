@@ -204,6 +204,27 @@ A fim de obter uma curva de tensão elétrica em função do tempo, desenvolvemo
 
 Após realizar a exportação dos dados utilizamos o software Wolfram Mathematica para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primeiramente, precisamos notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Primeiramente, desejamos converter estes valores de tensão elétrica em uma posição angular do pêndulo e para isto, utilizamos a função inversa calculada na equação \ref{eq:pendulo-model-inverse} e a aplicamos a cada ponto medido pelo DAQ pelo LABView. \todo{precisa usar o MATLAB aqui, arrumar o texto}
 
+A figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma bruta extraída diretamente do LABView:
+
+\begin{figure}[H]
+\centering
+[criar a imagem]
+\caption{Curva da tensão elétrica medida no pêndulo em função do tempo}
+\label{fig:pendulo-curva-tensao-vs-tempo}
+\end{figure}
+\todo{curva do pendulo}
+
+Sabendo que o ângulo de oscilação do pêndulo é dado pela equação \ref{eq:pendulo-model-inverse}, é possível aplicar esta equação a cada um dos valores de tensão elétrica amostrados e converter esta curva em uma curva de posição angular em função do tempo. O resultado desta transformação está na figura \ref{fig:pendulo-curva-angulo-vs-tempo}
+
+\begin{figure}[H]
+\centering
+[criar a imagem]
+\caption{Curva da posição angular do pêndulo em função do tempo}
+\label{fig:pendulo-curva-tensao-vs-tempo}
+\end{figure}
+\todo{curva do pendulo}
+
+\todo{calcular a incerteza de TODAS medidas}
 
 
 \chapter{Conclusões}
