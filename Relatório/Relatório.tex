@@ -1,10 +1,17 @@
 \documentclass[12pt,a4paper]{instrumentacao}
 
+\usepackage{listings}
+\usepackage{etoolbox}
+
+\newtoggle{attachments}
+\togglefalse{attachments}
+
 \graphicspath{
 	{../Resources/Images/}
 	{../Resources/Mathematica/images/}
 	{../Resources/MATLAB/images/}
 }
+
 \title{Alguns dos Efeitos Físicos Explorados em Sensores}
 \author{Rogiel Sulzbach \and Rodrigo de Castro Silveira \and Yi Chen Wu}
 \startdate{28 de março de 2016}
@@ -341,13 +348,20 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 
 \chapter{Conclusões}
 
-\chapter*{Anexos}
-\section{Mathematica}
-%\includenotebook{../Resources/Mathematica/Experimento 1-1.pdf}{Experimento 1}
+\iftoggle{attachments}{
+	\chapter*{Anexos}
+	\section{Mathematica}
+	\includenotebook{../Resources/Mathematica/Experimento 1-1.pdf}{Experimento 1}
 
-\section{LabVIEW}
+	\section{LabVIEW}
 
-\section{MATLAB}
+	\section{MATLAB}
+	\lstinputlisting[
+		language=MATLAB,
+		numbers=left,
+		caption={Script MATLAB para análise de frequência}
+	]{../Resources/MATLAB/primeiro.m}
+}
 
 \begin{thebibliography}{9}
 \bibitem{mathematica-numerial-precision} \url{https://reference.wolfram.com/language/tutorial/NumericalPrecision.html}, acessado em 16 de março de 2016
