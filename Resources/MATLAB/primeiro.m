@@ -7,10 +7,10 @@ close all;
 fourierTransform=fft(data);
 
 sample_rate=100;
-w=0:sample_rate/(length(f) - 1):sample_rate;
+w=0:sample_rate/(length(data) - 1):sample_rate;
 
 fig1=figure(1);
-plot(t,y1);
+plot(t,data);
 title ('Amplitude do pendulo em funcao de tempo');
 xlabel('t(s)');
 ylabel('Amplitude');
