@@ -135,6 +135,34 @@ Substituindo-se estes valores, temos que a função de transferência completa d
 	\label{eq:pendulo-tf-bloco}
 \end{equation}
 
+\section{Efeitos Físicos Utilizados em Sensores}
+\subsection{Sensor de Efeito Hall}
+Neste experimento foi interfaceado o módulo sensor de \textit{Efeito Hall Linear}, apresentado na Figura \ref{fig:efeito-hall}, com a Placa DAQ disponibilizada em laboratório.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{Imagens/Sensor_Hall.jpg}
+\caption{Foto do módulo sensor de Efeito Hall Linear}
+\label{fig:efeito-hall}
+\end{figure}
+
+Para a realização do experimento foram utilizados os seguintes materiais e instrumentos:
+
+\begin{itemize}
+	\item Ferramenta computacional LabVIEW;
+	\item 01 módulo sensor de Efeito Hall Linear;
+	\item 01 multímetro digital Minipa XXX;
+	\item 01 fonte de alimentação XXX;
+	\item 01 placa de Aquisição de Dados XXX;
+	\item 01 filtro \textit{anti-aliasing} (20Hz - 8ª ordem);
+	\item 01 regulador de tensão XXX;
+	\item fios para fazer as ligações. 
+\end{itemize}
+
+O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão e o GND da fonte, conforme indicação na placa da Figura \ref{fig:efeito-hall}, com "-" e "+", indicando, respectivamente, o GND e os 5V. O pino de sinal foi conectado a uma porta de entrada analógica da placa DAQ.
+
+No LabVIEW foi montada uma interface representada por um LED, e também por um gráfico (???), conforme a Figura XX.
+
 \chapter{Resultados e Discussões}
 
 Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, levantamos as seguintes medidas a fim de obter uma relação de tensão elétrica em função do angulo do pêndulo. A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas:
