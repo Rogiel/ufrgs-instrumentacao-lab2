@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{instrumentacao}
+\documentclass[a4paper]{instrumentacao}
 
 \usepackage{listings}
 \usepackage{etoolbox}
@@ -21,9 +21,9 @@
 	\emailaddress{R.C.S.}{csilveira.rodrigo@gmail.com} e
 	\emailaddress{Y.C.}{yichenpoa@gmail.com}
 }
-\resume{}
-\abstract{}
-\keywords{}
+\resume{Exploração de um sensor potenciométrico utilizado para estimar a curva de posição em função do tempo de um pêndulo, exploração da medida de campo magnético através de um sensor eletrônico de efeito Hall e experimentação do acionamento de um conjunto de 2 \textit{LEDs} utilizando o software LabVIEW.}
+\abstract{Exploration of a potentiometric sensor used to estimate the time curve of a pendulum, measurement of a magnetic field using a Hall sensor and experimentation of a trigger system for a group of 2 LEDs using LabVIEW software.}
+\keywords{pêndulo; sensor potenciométrico; LabVIEW \todo{mais keywords...}}
 \institute{Universidade Federal do Rio Grande do Sul, Departamento de Engenharia Elétrica, Curso de Engenharia Elétrica, Instrumentação A, Profs. Dr. Alexandre Balbinot e Dra. Léia Bagesteiro}
 
 \headertext{Efeitos físicos}
@@ -31,7 +31,7 @@
 \begin{document}
 \maketitle
 
-\todo{mudar a letra para times new roman.......}
+\todo{arrumar datas}
 
 \chapter{Introdução}
 Nesta atividade de laboratório exploramos os efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e outro de efeito Hall linear.
@@ -49,7 +49,7 @@ Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo
 
 onde $\theta$ é o angulo de inclinação do pêndulo em relação a origem (linha tracejada).
 
-Este pêndulo pode ser modelado eletricamente pelo seguinte circuito:
+Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:pendulo-equivalente}:
 
 \begin{figure}[H]
 \centering
@@ -69,7 +69,12 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 
 onde $R(\theta)$ é a resistência elétrica em do pêndulo $\Omega$ para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de 0 graus, $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$ relativa à sua posição de repouso.
 
-Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905}\todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos.
+Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905}\todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V com uma distribuição uniforme de probabilidade. A incerteza correspondente pode ser obtida pela equação \ref{eq:incerteza-regulador}:
+
+\begin{equation}
+	\delta_{regulador} = \frac{\Delta_{regulador}}{\sqrt{3}} \approx 0.12 V
+	\label{eq:incerteza-regulador}
+\end{equation}
 
 \subsection{Aquisição da resposta temporal do pêndulo}
 
@@ -87,8 +92,8 @@ $E_n$ indica as etapas de aquisição de dados.
 	\item \textbf{E1}: representa o sensor utilizado, no caso deste experimento um potenciometro;
 	\item \textbf{E2}: representa um amplificador com ganho unitário (buffer);
 	\item \textbf{E3}: representa o filtro anti-alias utilizado para o processo de amostragem;
-	\item \textbf{E4}: representa o processo de amostragem realizado utilizando o LABView e o DAQ (Data Acquisition device)
-	\item \textbf{E5}: no LABView foi armazenado os dados amostrados;
+	\item \textbf{E4}: representa o processo de amostragem realizado utilizando o LabVIEW e o DAQ (Data Acquisition device)
+	\item \textbf{E5}: no LabVIEW foi armazenado os dados amostrados;
 	\item \textbf{E6}: após o armazenamento dos dados foi realizado o processamento destes dados.
 \end{itemize}
 
@@ -101,7 +106,9 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 \label{fig:pendulo-cadeia-medidas}
 \end{figure}
 
-Para poder estimar o valor do angulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas}, precisa-se definir a função de transferência para os 3 blocos definidos.
+\subsection{Levantamento da função de transferência do pêndulo}
+
+Para poder estimar o valor do angulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas}, precisa-se definir a função de transferência para os 3 blocos definidos na figura \ref{fig:pendulo-cadeia-medidas}.
 
 A função de transferência para o sensor já foi obtida no experimento anterior e é dada na equação \ref{eq:pendulo-tf-forma}. Contudo, para utilizá-la nas medidas realizadas, é preciso que a função de transferência inversa seja obtida, conforme a equação \ref{eq:pendulo-tf-forma-inversa}
 
@@ -165,99 +172,177 @@ No LabVIEW foi montada uma interface representada por um LED, e também por um g
 
 \chapter{Resultados e Discussões}
 
-Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, levantamos as seguintes medidas a fim de obter uma relação de tensão elétrica em função do angulo do pêndulo. A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas:
+Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, levantamos as seguintes medidas a fim de obter uma relação de tensão elétrica em função do angulo do pêndulo. A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas utilizando o pêndulo sem circuito de condicionamento:
+
+\section{Função de transferência sem condicionamento}
 
 \begin{table}[H]
 \centering
-\caption{Tabela da relação entre temperatura e a resistência elétrica medida}
+\caption{Tabela da relação entre temperatura e a resistência elétrica medida sem condicionamento}
 \begin{tabular}{|l|l|l|}
  \hline
  \textbf{Ângulo ($º$)} & \textbf{Tensão Elétrica ($V$)} & \textbf{Tensão Elétrica ($V$)} \\ \hline
-
- -60 & -1.886 & -1.886 	\\ \hline
- -55 & -1.702 & -1.702 	\\ \hline
- -50 & -1.564 & -1.564 	\\ \hline
- -45 & -1.426 & -1.426 	\\ \hline
- -40 & -1.196 & -1.196 	\\ \hline
- -35 & -1.127 & -1.127 	\\ \hline
- -30 & -0.92 & -0.92 	\\ \hline
- -25 & -0.736 & -0.736 	\\ \hline
- -20 & -0.621 & -0.621 	\\ \hline
- -15 & -0.46 & -0.46 	\\ \hline
- -10 & -0.345 & -0.345 	\\ \hline
- -5 & -0.184 & -0.184 	\\ \hline
- 0 & 0. & 0. 			\\ \hline
- 5 & 0.138 & 0.138 		\\ \hline
- 10 & 0.322 & 0.322 	\\ \hline
- 15 & 0.506 & 0.506 	\\ \hline
- 20 & 0.69 & 0.69 		\\ \hline
- 25 & 0.828 & 0.828 	\\ \hline
- 30 & 0.966 & 0.966 	\\ \hline
- 35 & 1.127 & 1.127 	\\ \hline
- 40 & 1.265 & 1.265 	\\ \hline
- 45 & 1.472 & 1.472 	\\ \hline
- 50 & 1.587 & 1.587 	\\ \hline
- 55 & 1.84 & 1.84 		\\ \hline
- 60 & 1.955 & 1.955 	\\ \hline
+ 
+ -90 & -2.482 & -2.521 	\\ \hline
+ -80 & -2.266 & -2.216 	\\ \hline
+ -70 & -1.905 & -1.870	\\ \hline
+ -60 & -1.618 & -1.617 	\\ \hline
+ -50 & -1.351 & -1.358 	\\ \hline
+ -40 & -1.122 & -1.093 	\\ \hline
+ -30 & -0.874 & -0.885 	\\ \hline
+ -20 & -0.620 & -0.549 	\\ \hline
+ -10 & -0.297 & -0.299 	\\ \hline
+ 0 & 0.012 & 0.019 		\\ \hline
+ 10 & 0.302 & 0.221 	\\ \hline
+ 20 & 0.547 & 0.490 	\\ \hline
+ 30 & 0.699 & 0.755 	\\ \hline
+ 40 & 0.998 & 1.022 	\\ \hline
+ 50 & 1.265 & 1.289 	\\ \hline
+ 60 & 1.580 & 1.569 	\\ \hline
+ 70 & 1.954 & 1.945 	\\ \hline
+ 80 & 2.280 & 2.248 	\\ \hline
+ 90 & 2.590 & 2.600 	\\ \hline
  
 \end{tabular}
 \label{tab:pendulo-calibracao}
 \end{table}
-\todo{essa tabela ta totalmente errada. temos que refazer o experimento.} % eu fiz uma multiplicação mágica pra ajustar os valores que teríamos medido, mas precisamos mesmo fazer a medida certa dessa coisa, ou o Balbinot não vai aceitar
 
-Observa-se que cada medida foi feita com duas repetições e de forma totalmente aleatória.
+A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao} é dada pela equação \ref{eq:pendulo-tf-sem-cond}:
 
-Podemos, adicionalmente, plotar estes pontos em um gráfico para melhor observar o formato da curva:
+\begin{equation}
+	V(\theta) = 0.028 \theta - 0.015
+	\label{eq:pendulo-tf-sem-cond}
+\end{equation}
+
+\noindent 
+ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-sem-cond-inv}
+
+\begin{equation}
+	\theta(V) = 0.53 + 36 V
+	\label{eq:pendulo-tf-sem-cond-inv}
+\end{equation}
+
+\noindent
+onde $\theta$ é o angulo de inclinação do pêndulo e $V$ é a tensão elétrica medida sobre os terminais do pêndulo.
+
+O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equação \ref{eq:pendulo-sem-cond-rsquared}
+
+\begin{equation}
+	R^2 = 0.998
+	\label{eq:pendulo-sem-cond-rsquared}
+\end{equation}
+
+De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao}) e a função de transferência (Equação \ref{eq:pendulo-tf-sem-cond}) ajustada pode ser visualizada na figura \ref{fig:pendulo-tf-sem-cond}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{Pendulo-Pontos.pdf}
-\caption{Gráfico exibindo as medidas realizadas}
-\label{fig:pendulo-medidas}
+\includegraphics[width=\textwidth]{Pendulo-fit.pdf}
+\caption{Gráfico exibindo a função de transferência ajustada sobreposta às medidas experimentais}
+\label{fig:pendulo-tf-sem-cond}
 \end{figure}
 
-É fácil observar que há uma tendência linear nas medidas, então podemos realizar um ajuste de curvas a fim de tentar obter a reta que melhor representa os dados medidos. Na equação \ref{eq:pendulo-model} temos o modelo de curva que fornece o melhor ajuste:
+\section{Função de transferência com condicionamento}
+
+Na Tabela \ref{tab:pendulo-calibracao-condicionado}, estão apresentados os dados experimentais medidos utilizando o circuito de condicionamento:
+
+\begin{table}[H]
+\centering
+\caption{Tabela da relação entre temperatura e a resistência elétrica medida com condicionamento}
+\begin{tabular}{|l|l|l|}
+ \hline
+ \textbf{Ângulo ($º$)} & \textbf{Tensão Elétrica ($V$)} & \textbf{Tensão Elétrica ($V$)} \\ \hline
+
+ -90 & -2.61 & -2.57 	\\ \hline
+ -80 & -2.27 & -2.21 	\\ \hline
+ -70 & -1.98 & -1.89 	\\ \hline
+ -60 & -1.58 & -1.57 	\\ \hline
+ -50 & -1.34 & -1.37 	\\ \hline
+ -40 & -1.05 & -1.06 	\\ \hline
+ -30 & -0.82 & -0.81 	\\ \hline
+ -20 & -0.54 & -0.57 	\\ \hline
+ -10 & 0.24 & 0.25 		\\ \hline
+ 0 & 0.50 & 0.70 		\\ \hline
+ 10 & 0.37 & 0.32 		\\ \hline
+ 20 & 0.62 & 0.58 		\\ \hline
+ 30 & 0.86 & 0.85 		\\ \hline
+ 40 & 1.21 & 1.12 		\\ \hline
+ 50 & 1.47 & 1.39 		\\ \hline
+ 60 & 1.82 & 1.70 		\\ \hline
+ 70 & 2.16 & 2.18 		\\ \hline
+ 80 & 2.51 & 2.44 		\\ \hline
+ 90 & 2.91 & 2.78 		\\ \hline
+
+\end{tabular}
+\label{tab:pendulo-calibracao-condicionado}
+\end{table}
+
+A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao-condicionado} é dada pela equação \ref{eq:pendulo-tf-com-cond}:
 
 \begin{equation}
-	V(\theta) = 0.0318532 \theta +0.02116
-	\label{eq:pendulo-model}
+	V(\theta) = 0.029 \theta + 0.125
+	\label{eq:pendulo-tf-com-cond}
 \end{equation}
 
-onde $V(\theta)$ é a tensão elétrica do pêndulo e $\theta$ é o angulo do pêndulo em graus.
-
-Com esta equação também é possível calcular a sua função inversa e obter o ângulo em função da tensão elétrica, na equação \ref{eq:pendulo-model-inverse}, a função inversa do modelo é dada:
+\noindent 
+ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-com-cond-inv}
 
 \begin{equation}
-	\theta(V) = -0.664297 + 31.394 V
-	\label{eq:pendulo-model-inverse}
+	\theta(V) = -4.3 + 34. V
+	\label{eq:pendulo-tf-com-cond-inv}
 \end{equation}
 
-Dessa forma, podemos utilizar a equação \ref{eq:pendulo-model-inverse} para calcular o angulo de um pêndulo em função de seu correspondente valor de tensão elétrica conforme será feito a seguir.
+O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equação \ref{eq:pendulo-com-cond-rsquared}
 
-A fim de obter uma curva de tensão elétrica em função do tempo, desenvolvemos uma aplicação no LABView que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na figura \ref{fig:pendulo-labview} está mostrado uma imagem do programa utilizado.
+\begin{equation}
+	R^2 = 0.989
+	\label{eq:pendulo-com-cond-rsquared}
+\end{equation}
 
-\todo{adicionar um print do labview}
-
-Após realizar a exportação dos dados utilizamos o software Wolfram Mathematica para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primeiramente, precisamos notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Primeiramente, desejamos converter estes valores de tensão elétrica em uma posição angular do pêndulo e para isto, utilizamos a função inversa calculada na equação \ref{eq:pendulo-model-inverse} e a aplicamos a cada ponto medido pelo DAQ pelo LABView. \todo{precisa usar o MATLAB aqui, arrumar o texto}
-
-A figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma bruta extraída diretamente do LABView:
+De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao-condicionado}) e a função de transferência (Equação \ref{eq:pendulo-tf-com-cond}) ajustada pode ser visualizada na figura \ref{fig:pendulo-tf-com-cond}
 
 \begin{figure}[H]
 \centering
-[criar a imagem]
+\includegraphics[width=\textwidth]{Pendulo-Condicionado-fit.pdf}
+\caption{Gráfico exibindo a função de transferência ajustada sobreposta às medidas experimentais}
+\label{fig:pendulo-tf-com-cond}
+\end{figure}
+
+\section{Curva temporal do pêndulo}
+
+A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvolvido uma aplicação no LabVIEW que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na figura \ref{fig:pendulo-LabVIEW} está mostrado uma imagem do programa utilizado.
+
+\todo{adicionar um print do LabVIEW}
+
+Após realizar a exportação dos dados foi utilizado o software MATLAB para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primeiramente, é importante notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Num primeiro passe, deseja-se filtrar o valor de forma a remover qualquer ruído gerado pelo conversor analógico-digital da placa de aquisição de dados e após a filtragem converter estes valores de tensão elétrica em uma posição angular utilizando a função de transferência inversa com condicionamento dada pela Equação \ref{eq:pendulo-tf-com-cond-inv}.
+
+A figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma bruta extraída diretamente do LabVIEW:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{time-plot-raw.pdf}
 \caption{Curva da tensão elétrica medida no pêndulo em função do tempo}
 \label{fig:pendulo-curva-tensao-vs-tempo}
 \end{figure}
-\todo{curva do pendulo}
 
-Sabendo que o ângulo de oscilação do pêndulo é dado pela equação \ref{eq:pendulo-model-inverse}, é possível aplicar esta equação a cada um dos valores de tensão elétrica amostrados e converter esta curva em uma curva de posição angular em função do tempo. O resultado desta transformação está na figura \ref{fig:pendulo-curva-angulo-vs-tempo}
+Na curva \ref{fig:pendulo-curva-tensao-vs-tempo}, é possível observar que há um alto nível de ruído em alta frequência, isto é, frequências onde a frequência do ruído são de ordens muito superiores a frequência do sinal desejado. Dessa forma, um filtro passa baixas de Butterworth foi desenvolvido com frequência de corte em 20 Hz que torna possível a extração da curva filtrada apresentada na figura \ref{fig:pendulo-curva-tensao-vs-tempo-filtrado}.
+
 
 \begin{figure}[H]
 \centering
-[criar a imagem]
-\caption{Curva da posição angular do pêndulo em função do tempo}
-\label{fig:pendulo-curva-tensao-vs-tempo}
+\includegraphics[width=\textwidth]{time-plot.pdf}
+\caption{Curva da tensão elétrica medida no pêndulo em função do tempo}
+\label{fig:pendulo-curva-tensao-vs-tempo-filtrado}
 \end{figure}
-\todo{curva do pendulo}
+
+Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito de condicionamento, é dado pela equação \ref{eq:pendulo-tf-com-cond-inv}, é possível aplicar esta equação a cada um dos valores de tensão elétrica amostrados e converter esta curva em uma curva de posição angular em função do tempo. O resultado desta transformação está na figura \ref{fig:pendulo-curva-angulo-vs-tempo}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{angle-time-plot.pdf}
+\caption{Curva da posição angular do pêndulo em função do tempo}
+\label{fig:pendulo-curva-angulo-vs-tempo}
+\end{figure}
+
+Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textbf{Fast Fourier Transform} (FFT). Na figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
 
 \begin{figure}[H]
 \centering
@@ -266,6 +351,18 @@ Sabendo que o ângulo de oscilação do pêndulo é dado pela equação \ref{eq:
 \label{fig:pendulo-frequencia}
 \end{figure}
 
+Para melhor visualizar o espectro, pode-se truncar o gráfico da imagem \ref{fig:pendulo-frequencia} em 1.5 Hz para melhor visualizar a curva em baixa frequência, conforme figura \ref{fig:pendulo-frequencia-truncado}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{frequency-plot-slice.pdf}
+\caption{Análise de frequência da curva do pêndulo (truncado em 1.5 Hz)}
+\label{fig:pendulo-frequencia-truncado}
+\end{figure}
+
+Na figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a componente espectral de $0.9$ Hz no pêndulo. Esta componente também é claramente visível na curva temporal da figura \ref{fig:pendulo-curva-tensao-vs-tempo} onde o período da oscilação é de $1.1$ segundos, que correspondem ao valor de $0.9$ Hz.
+
+As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo, 
 
 \section{Medição à 3 fios}
 
@@ -343,7 +440,7 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 
 \todo{sensibilidade, resolução de entrada, resolução de saída, erro de linearidade ou de conformidade, incerteza, etc, assim como, a correspondente Cadeia de Medidas Proposta (teórica) e a Cadeia de Medidas Experimental}
 
-\todo{labview+matlab}
+\todo{LabVIEW+matlab}
 \todo{só matlab}
 
 \todo{determinar a sensibilidade, a resolução de entrada, resolução de saída, o erro de linearidade (ou erro de conformidade se for o caso) de seu sistema}
@@ -403,8 +500,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \bibitem{datasheet-lm7905} Datasheet oferecido pelo fabricante do regulador de tensão LM7905
 
 \todo{arrumar bibliografia}
-
-\todo{teste GitHub}
 
 \end{thebibliography}
 

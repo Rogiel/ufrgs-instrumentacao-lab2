@@ -1,7 +1,7 @@
 \ProvidesClass{instrumentacao}[2014/08/16 Example LaTeX class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
-\LoadClass[]{report}
+\LoadClass[14pt]{extreport}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[brazil]{babel}
@@ -12,6 +12,7 @@
 \RequirePackage{cite}
 \RequirePackage{url}
 \RequirePackage{hyperref}
+\RequirePackage{cleveref}
 \RequirePackage[all]{hypcap}
 \RequirePackage{titlesec}
 \RequirePackage{titling}
@@ -34,6 +35,7 @@
 \RequirePackage{pdfpages}
 \RequirePackage{pbox}
 
+\fontsize{20pt}{0pt}\selectfont
 
 %% TEMPLATE ARGUMENTS
 \newcommand{\institute}[1]{%
