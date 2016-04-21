@@ -106,6 +106,117 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 \label{fig:pendulo-cadeia-medidas}
 \end{figure}
 
+Para a etapa E1, utilizou-se um potenciometro de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
+
+Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como um buffer de tensão, conforme o esquemático elétrico apresentado na figura \ref{fig:buffer-tensão}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Buffer-tensao.pdf}
+\caption{Esquemático elétrico do buffer de tensão}
+\label{fig:buffer-tensão}
+\end{figure}
+
+\noindent
+onde $V_{in}$ é a tensão elétrica de entrada e $V_{out}$ é a tensão elétrica de saída do buffer. A função de transferência do buffer é dada, trivialmente, pela equação \ref{eq:buffer}
+
+\begin{equation}
+	V_{out} = V_{in}
+	\label{eq:buffer}
+\end{equation}
+
+Para a etapa E3, utilizou-se um filtro anti-alias do tipo \textit{Butterworth} de quarta ordem ativo com frequência de corte de 100 Hz. Esta decisão foi tomada para que a fase não-linear de um filtro de \textit{Butterworth} não pudesse causar qualquer alteração no sinal amostrado. O filtro foi implementado utilizando a topologia de filtros ativos de \textit{Sallen-Key} e utilizou-se o amplificador operacional LM741 em 2 estágios. Cada estágio do filtro é implementado pelo bloco da figura \ref{fig:filtro-estagio}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Filtro-estagio.pdf}
+\caption{Esquemático elétrico do buffer de tensão}
+\label{fig:filtro-estagio}
+\end{figure}
+
+\noindent
+onde os resistores $R_1$ e $R_2$ e os capacitores $C_1$ e $C_2$ determinam a frequência de corte do filtro, $V_{in}$ é a tensão elétrica de entrada do estágio do filtro e $V_{out}$ é a tensão elétrica de saída do estágio do filtro.
+
+A função de transferência do estágio no domínio da frequência é dada pela equação \ref{eq:filtro-tf}:
+
+\begin{equation}
+	H_{\text{filtro}, \text{estágio n}}(s) = \frac{1}{C_1 C_2 s^2 \left(\frac{1}{C_2 s}\left(R_1+R_2\right)+\frac{1}{C_1 C_2 s^2}+R_1 R_2\right)}
+	\label{eq:filtro-tf}
+\end{equation}
+
+A associação dos estágios é dada pela multiplicação das funções de transferência de cada estágio (Equação \ref{eq:filtro-tf}) no domínio frequência, conforme equação \ref{eq:filtro-assoc}
+
+\begin{equation}
+	\frac{V_{in}(s)}{V_{out}(s)} = H_{\text{filtro}, \text{estágio 1}}(s) \times H_{\text{filtro}, \text{estágio 2}}(s)
+	\label{eq:filtro-tf-assoc}
+\end{equation}
+
+\noindent
+onde a função de transferência resultante é dada pela equação \ref{eq:filtro-tf-completa}:
+
+\begin{equation}
+	\small
+	\frac{V_{out}}{V_{in}} = \frac{s^4}{s^4\left(C_1 C_2 s^2 \left(\frac{1}{C_2 s}\left(R_1+R_2\right)+R_1 R_2\right)+1\right) \left(C_3 C_4 s^2 \left(\frac{1}{C_4 s}\left(R_3+R_4\right)+R_3 R_4\right)+1\right)}
+	\label{eq:filtro-tf-completa}
+\end{equation}
+
+Os pólos da função de transferência da equação \ref{eq:filtro-tf-completa}, estão definidos como as frequências das equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4}:
+
+\begin{eqnarray}
+	p_{1} &=& \frac{-\sqrt{\left(C_1 R_1+C_1 R_2\right){}^2-4 C_1 C_2 R_1 R_2}-C_1 R_1-C_1 R_2}{2 C_1 C_2 R_1 R_2} \label{eq:filtro-tf-polo1} \\
+	p_{2} &=& \frac{\sqrt{\left(C_1 R_1+C_1 R_2\right){}^2-4 C_1 C_2 R_1 R_2}-C_1 R_1-C_1 R_2}{2 C_1 C_2 R_1 R_2} \label{eq:filtro-tf-polo2} \\
+	p_{3} &=& \frac{-\sqrt{\left(C_3 R_3+C_3 R_4\right){}^2-4 C_3 C_4 R_3 R_4}-C_3 R_3-C_3 R_4}{2 C_3 C_4 R_3 R_4} \label{eq:filtro-tf-polo3} \\
+	p_{4} &=& \frac{\sqrt{\left(C_3 R_3+C_3 R_4\right){}^2-4 C_3 C_4 R_3 R_4}-C_3 R_3-C_3 R_4}{2 C_3 C_4 R_3 R_4}\label{eq:filtro-tf-polo4} 
+\end{eqnarray}
+
+Resolvendo as equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 Hz, uma possível solução para o valores (utilizando valores comerciais de resistores e capacitores) é dada pela tabela \ref{tab:filtro-valores}:
+
+\begin{table}[H]
+\centering
+\caption{Tabela com o valor dos componentes passivos do filtro}
+\begin{tabular}{|l|l|l|}
+ \hline
+ \textbf{Componente} & \textbf{Valor} & \textbf{Tolerância} \\ \hline
+ 
+ $R_1$ & 12 $k\Omega$ 	& 10\% \\ \hline
+ $R_2$ & 18 $k\Omega$ 	& 10\% \\ \hline
+ $R_3$ & 3.9 $k\Omega$ 	& 10\% \\ \hline
+ $R_4$ & 8.2 $k\Omega$ 	& 10\% \\ \hline
+ 
+ $C_1$ & 100 $nF$ 		& 5\% \\ \hline
+ $C_2$ & 120 $nF$ 		& 5\% \\ \hline
+ $C_3$ & 100 $nF$ 		& 5\% \\ \hline
+ $C_4$ & 820 $nF$ 		& 5\% \\ \hline
+  
+\end{tabular}
+\label{tab:filtro-valores}
+\end{table}
+
+Com os componentes com valores indicados na tabela, \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98 Hz, muito próximo da frequência de 100Hz desejada. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela equação \ref{eq:incerteza-propagada}:
+
+\begin{equation}
+	\delta_f = \sqrt{
+		\sum_{k} 
+			\left(\frac{\partial f}{\partial k}\times \delta_k \right)^2
+	}
+	\label{eq:incerteza-propagada}
+\end{equation}
+
+\noindent
+onde $f$ é a função de medição, $\delta_f$ é a incerteza propagada para $f$, $k$ são as variáveis com incertezas definidas e $\delta_k$ são as incertezas para cada variável $k$.
+
+\todo{referenciar o script do mathematica}
+
+Com o software Wolfram Mathematica, é fácil aproximar a incerteza propagada dos valores dos componentes adicionados ao filtro para a frequência de corte real do filtro. Nas Equações \ref{eq:incerteza-polo-1} e \ref{eq:incerteza-polo-2}, estão indicadas as incertezas propagadas da frequência de corte para cada um dos pólos do filtro.
+
+\begin{eqnarray}
+	f_{1,2} = 98 \pm 20 \label{eq:incerteza-polo-1} \\
+	f_{3,4} = 98 \pm 27 \label{eq:incerteza-polo-2}
+\end{eqnarray}
+
+\noindent
+onde $f_{1,2}$ é a frequência de corte para os pólos 1 e 2 e $f_{3,4}$ é a frequência de corte para os pólos 3 e 4.
+
 \subsection{Levantamento da função de transferência do pêndulo}
 
 Para poder estimar o valor do angulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas}, precisa-se definir a função de transferência para os 3 blocos definidos na figura \ref{fig:pendulo-cadeia-medidas}.
