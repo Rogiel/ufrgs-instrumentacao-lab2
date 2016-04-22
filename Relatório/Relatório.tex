@@ -47,7 +47,7 @@ Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo
 \label{fig:pendulo}
 \end{figure}
 
-onde $\theta$ é o angulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo.
+onde $\theta$ é o ângulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo.
 
 Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:pendulo-equivalente}:
 
@@ -60,14 +60,14 @@ Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:p
 
 onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
 
-A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do angulo $\theta$. Com este experimento, pode-se realizar um \textit{fit} cuja função será utilizada como a função de transferência do sensor. Uma vez que o potenciometro é linear, espera-se que a função de transferência é dada na forma da equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na figura \ref{fig:pendulo}:
+A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com este experimento, pode-se realizar um \textit{fit} cuja função será utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na figura \ref{fig:pendulo}:
 
 \begin{equation}
 	R(\theta) = R_0 + R_1 \times \theta
 	\label{eq:pendulo-tf-forma}
 \end{equation}
 
-onde $R(\theta)$ é a resistência elétrica em do pêndulo $\Omega$ para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de 0 graus, $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$ relativa à sua posição de repouso.
+onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$ para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de 0 graus, $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$ relativa à sua posição de repouso.
 
 Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905}\todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V com uma distribuição uniforme de probabilidade. A incerteza correspondente pode ser obtida pela equação \ref{eq:incerteza-regulador}:
 
@@ -89,11 +89,11 @@ $E_n$ indica as etapas de aquisição de dados.
 \end{figure}
 
 \begin{itemize}
-	\item \textbf{E1}: representa o sensor utilizado, no caso deste experimento um potenciometro;
-	\item \textbf{E2}: representa um amplificador com ganho unitário (buffer);
+	\item \textbf{E1}: representa o sensor utilizado, no caso deste experimento um potenciômetro;
+	\item \textbf{E2}: representa um amplificador com ganho unitário (\textit{buffer});
 	\item \textbf{E3}: representa o filtro anti-alias utilizado para o processo de amostragem;
 	\item \textbf{E4}: representa o processo de amostragem realizado utilizando o LabVIEW e o DAQ (Data Acquisition device)
-	\item \textbf{E5}: no LabVIEW foi armazenado os dados amostrados;
+	\item \textbf{E5}: no LabVIEW foram armazenados os dados amostrados;
 	\item \textbf{E6}: após o armazenamento dos dados foi realizado o processamento destes dados.
 \end{itemize}
 
@@ -106,7 +106,10 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 \label{fig:pendulo-cadeia-medidas}
 \end{figure}
 
-Para a etapa E1, utilizou-se um potenciometro de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
+Para a etapa E1, utilizou-se um 
+
+
+ de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
 
 Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como um buffer de tensão, conforme o esquemático elétrico apresentado na figura \ref{fig:buffer-tensão}:
 
@@ -144,7 +147,7 @@ A função de transferência do estágio no domínio da frequência é dada pela
 	\label{eq:filtro-tf}
 \end{equation}
 
-A associação dos estágios é dada pela multiplicação das funções de transferência de cada estágio (Equação \ref{eq:filtro-tf}) no domínio frequência, conforme equação \ref{eq:filtro-assoc}
+A associação dos estágios é dada pela multiplicação das funções de transferência de cada estágio (Equação \ref{eq:filtro-tf}) no domínio frequência, conforme equação \ref{eq:filtro-tf-assoc}
 
 \begin{equation}
 	\frac{V_{in}(s)}{V_{out}(s)} = H_{\text{filtro}, \text{estágio 1}}(s) \times H_{\text{filtro}, \text{estágio 2}}(s)
@@ -225,11 +228,9 @@ Logo, através da análise anterior, podemos concluir que mesmo no pior caso de 
 
 Para o processo de amostragem E4, o DAQ USB-6009 da National Instruments foi utilizado para levantar os dados. A entrada lógica deste dispositivo possui 14 bits e uma taxa de amostragem de 48 $kS/s$ e possui uma resolução de tensão elétrica na entrada analógica de $1.53 mV$.
 
-No processo 
-
 \subsection{Levantamento da função de transferência do pêndulo}
 
-Para poder estimar o valor do angulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas} e utilizando as funções de transferência definidas para cada um dos blocos, pode-se realizar a extração da função de transferência experimental do pêndulo.
+Para poder estimar o valor do ângulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas} e utilizando as funções de transferência definidas para cada um dos blocos, pode-se realizar a extração da função de transferência experimental do pêndulo.
 
 A função de transferência para o sensor já foi obtida no experimento anterior e é dada na equação \ref{eq:pendulo-tf-forma}. Contudo, para utilizá-la nas medidas realizadas, é preciso que a função de transferência inversa seja obtida, conforme a equação \ref{eq:pendulo-tf-forma-inversa}
 
@@ -238,7 +239,7 @@ A função de transferência para o sensor já foi obtida no experimento anterio
 	\label{eq:pendulo-tf-forma-inversa}
 \end{equation}
 
-onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o offset de angulo correspondente ao offset inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
+onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o \textit{offset} de ângulo correspondente ao offset inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
 
 Para que seja possível comparar os resultados obtidos com e sem o circuito condicionador, é imprescindível que sejam extraídas as funções de transferências equivalentes do pêndulo nas duas situações.
 
@@ -465,7 +466,7 @@ Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito d
 \label{fig:pendulo-curva-angulo-vs-tempo}
 \end{figure}
 
-Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textbf{Fast Fourier Transform} (FFT). Na figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
+Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textit{Fast Fourier Transform} (FFT). Na figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
 
 \begin{figure}[H]
 \centering
@@ -489,7 +490,7 @@ As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo
 
 \section{Medição à 3 fios}
 
-Considerando a ponte de Wheatstone da figura \ref{fig:3fios-wheatstone}
+Considerando a ponte de \textit{Wheatstone} da figura \ref{fig:3fios-wheatstone}
 
 \begin{figure}[H]
 \centering
