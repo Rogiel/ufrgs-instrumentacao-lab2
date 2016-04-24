@@ -139,19 +139,19 @@ Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Buffer-tensao.pdf}
-\caption{Circuito elétrico do buffer de tensão}
+\caption{Circuito elétrico do \textit{buffer} de tensão elétrica}
 \label{fig:buffer-tensão}
 \end{figure}
 
 \noindent
-onde $V_{in}$ é a tensão elétrica de entrada e $V_{out}$ é a tensão elétrica de saída do buffer. A função de transferência do buffer é dada, trivialmente, pela Equação \ref{eq:buffer}
+onde $V_{in}$ é a tensão elétrica de entrada e $V_{out}$ é a tensão elétrica de saída do \textit{buffer}. A função de transferência do \textit{buffer} é dada, trivialmente, pela Equação \ref{eq:buffer}
 
 \begin{equation}
 	V_{out} = V_{in}
 	\label{eq:buffer}
 \end{equation}
 
-Para a etapa E3, utilizou-se um filtro anti-alias do tipo \textit{Butterworth} de quarta ordem ativo com frequência de corte de 100 Hz. Esta decisão foi tomada para que a fase não-linear de um filtro de \textit{Butterworth} não pudesse causar qualquer alteração no sinal amostrado. O filtro foi implementado utilizando a topologia de filtros ativos de \textit{Sallen-Key} e utilizou-se o amplificador operacional LM741 em 2 estágios. Cada estágio do filtro é implementado pelo bloco da figura \ref{fig:filtro-estagio}:
+Para a etapa E3, utilizou-se um filtro ativo anti-alias do tipo \textit{Butterworth} de quarta ordem com frequência de corte de 100 Hz(hertz). Esta decisão foi tomada para que a fase não-linear de um filtro de \textit{Butterworth} não pudesse causar qualquer alteração no sinal amostrado. O filtro foi implementado utilizando a topologia de filtros ativos de \textit{Sallen-Key} e utilizou-se o amplificador operacional LM741 em dois estágios. Cada estágio do filtro é implementado pelo bloco da Figura \ref{fig:filtro-estagio}:
 
 \begin{figure}[H]
 \centering
@@ -163,14 +163,14 @@ Para a etapa E3, utilizou-se um filtro anti-alias do tipo \textit{Butterworth} d
 \noindent
 onde os resistores $R_1$ e $R_2$ e os capacitores $C_1$ e $C_2$ determinam a frequência de corte do filtro, $V_{in}$ é a tensão elétrica de entrada do estágio do filtro e $V_{out}$ é a tensão elétrica de saída do estágio do filtro.
 
-A função de transferência do estágio no domínio da frequência é dada pela equação \ref{eq:filtro-tf}:
+A função de transferência do estágio no domínio da frequência é dada pela Equação \ref{eq:filtro-tf}:
 
 \begin{equation}
 	H_{\text{filtro}, \text{estágio n}}(s) = \frac{1}{C_1 C_2 s^2 \left(\frac{1}{C_2 s}\left(R_1+R_2\right)+\frac{1}{C_1 C_2 s^2}+R_1 R_2\right)}
 	\label{eq:filtro-tf}
 \end{equation}
 
-A associação dos estágios é dada pela multiplicação das funções de transferência de cada estágio (Equação \ref{eq:filtro-tf}) no domínio frequência, conforme equação \ref{eq:filtro-tf-assoc}
+A associação dos estágios é dada pela multiplicação das funções de transferência de cada estágio (Equação \ref{eq:filtro-tf}) no domínio frequência, conforme Equação \ref{eq:filtro-tf-assoc}
 
 \begin{equation}
 	\frac{V_{in}(s)}{V_{out}(s)} = H_{\text{filtro}, \text{estágio 1}}(s) \times H_{\text{filtro}, \text{estágio 2}}(s)
