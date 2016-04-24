@@ -34,11 +34,11 @@
 \todo{arrumar datas}
 
 \chapter{Introdução}
-Nesta atividade de laboratório exploramos os efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e outro de efeito Hall linear.
+Nesta atividade de laboratório foram explorados os efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e um sensor de Efeito Hall Linear.
 
 \chapter{Metodologia Experimental}
 \section{Sensor potênciométrico}
-Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo estava conectado à um potenciômetro. A construção está ilustrada na figura \ref{fig:pendulo}:
+Para a atividade do sensor potenciométrico, foi desenvolvido um pêndulo cujo eixo estava conectado a um potenciômetro. A construção está ilustrada na figura \ref{fig:pendulo}:
 
 \begin{figure}[H]
 \centering
@@ -46,7 +46,6 @@ Para a atividade do sensor potenciométrico, desenvolvemos um pêndulo cujo eixo
 \caption{Estrutura do pêndulo}
 \label{fig:pendulo}
 \end{figure}
-
 onde $\theta$ é o ângulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo.
 
 Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:pendulo-equivalente}:
@@ -60,7 +59,7 @@ Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:p
 
 onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
 
-A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com este experimento, pode-se realizar um \textit{fit} cuja função será utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na figura \ref{fig:pendulo}:
+A fim de extrair a função de transferência do sensor, realizou-se um experimento com repetição onde, através de um voltímetro, mediu-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com este experimento, pode-se realizar um \textit{fit} cuja função será utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na figura \ref{fig:pendulo}:
 
 \begin{equation}
 	R(\theta) = R_0 + R_1 \times \theta
@@ -69,7 +68,7 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 
 onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$ para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de 0 graus, $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$ relativa à sua posição de repouso.
 
-Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905}\todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V com uma distribuição uniforme de probabilidade. A incerteza correspondente pode ser obtida pela equação \ref{eq:incerteza-regulador}:
+Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica: um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905} \todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V com uma distribuição uniforme de probabilidade. A incerteza correspondente pode ser obtida pela equação \ref{eq:incerteza-regulador}:
 
 \begin{equation}
 	\delta_{regulador} = \frac{\Delta_{regulador}}{\sqrt{3}} \approx 0.12 V
@@ -78,7 +77,7 @@ Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alim
 
 \subsection{Modelagem do sistema de aquisição de dados do pêndulo}
 
-Para obter a resposta temporal do pêndulo, utilizamos um mecanismo de aquisição de dados conforme a figura \ref{fig:pendulo-fluxo-medidas}:
+Para obter a resposta temporal do pêndulo, foi utilizado um mecanismo de aquisição de dados conforme a figura \ref{fig:pendulo-fluxo-medidas}:
 
 \begin{figure}[H]
 \centering
@@ -92,7 +91,7 @@ $E_n$ indica as etapas de aquisição de dados.
 	\item \textbf{E1}: representa o sensor utilizado, no caso deste experimento um potenciômetro;
 	\item \textbf{E2}: representa um amplificador com ganho unitário (\textit{buffer});
 	\item \textbf{E3}: representa o filtro anti-alias utilizado para o processo de amostragem;
-	\item \textbf{E4}: representa o processo de amostragem realizado utilizando o LabVIEW e o DAQ (Data Acquisition device)
+	\item \textbf{E4}: representa o processo de amostragem realizado, utilizando o LabVIEW e o DAQ (Data Acquisition device)
 	\item \textbf{E5}: no LabVIEW foram armazenados os dados amostrados;
 	\item \textbf{E6}: após o armazenamento dos dados foi realizado o processamento destes dados.
 \end{itemize}
@@ -111,12 +110,12 @@ Para a etapa E1, utilizou-se um
 
  de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
 
-Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como um buffer de tensão, conforme o esquemático elétrico apresentado na figura \ref{fig:buffer-tensão}:
+Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como um buffer de tensão, conforme o circuito elétrico apresentado na figura \ref{fig:buffer-tensão}:
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Buffer-tensao.pdf}
-\caption{Esquemático elétrico do buffer de tensão}
+\caption{Circuito elétrico do buffer de tensão}
 \label{fig:buffer-tensão}
 \end{figure}
 
@@ -243,7 +242,23 @@ onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a i
 
 Para que seja possível comparar os resultados obtidos com e sem o circuito condicionador, é imprescindível que sejam extraídas as funções de transferências equivalentes do pêndulo nas duas situações.
 
-Para extrair a função de transferência experimental do pêndulo sem condicionamento foi utilizado um multímetro \todo{qual?} com as seguintes especificações informadas pelo fabricante. \todo{colocar as especificações}.
+Para extrair a função de transferência experimental do pêndulo sem condicionamento foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na \ref{tab:precisão-multimetro}. A coluna da precisão é apresentada na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos.
+
+
+\begin{table}[H]
+\centering
+\caption{Especificações de precisão do multímetro Minipa ET-2082B para a medição de Tensão DC}
+\label{tab:precisão-multimetro}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Faixa} & \textbf{Precisão}                & \textbf{Resolução} \\ \hline
+200 mV         & \multirow{4}{*}{$\pm$ (0.5\% + 3D)} & 100 $\mu$V             \\ \cline{1-1} \cline{3-3} 
+2 V            &                                  & 1 mV               \\ \cline{1-1} \cline{3-3} 
+20 V           &                                  & 10 mV              \\ \cline{1-1} \cline{3-3} 
+200 V          &                                  & 100 mV             \\ \hline
+1000 V         & $\pm$ (1.0\% + 5D)                  & 1 V                \\ \hline
+\end{tabular}
+\end{table}
 
 Foi medida a tensão elétrica sobre um dos resistores intermediários do modelo elétrico do pêndulo conforme a figura \ref{fig:pendulo-equivalente} onde o o pêndulo era alimentado com uma tensão elétrica simétrica de -5V e +5V. Foram feitas medidas em intervalos de 10 em 10 graus de -90 a +90 graus com duas repetições cada.
 
@@ -282,17 +297,18 @@ Para a realização do experimento foram utilizados os seguintes materiais e ins
 \begin{itemize}
 	\item Ferramenta computacional LabVIEW;
 	\item 01 módulo sensor de Efeito Hall Linear;
-	\item 01 multímetro digital Minipa XXX;
-	\item 01 fonte de alimentação XXX;
-	\item 01 placa de Aquisição de Dados XXX;
-	\item 01 filtro \textit{anti-aliasing} (20Hz - 8ª ordem);
-	\item 01 regulador de tensão XXX;
+	\item 01 ímã;
+	\item 01 multímetro digital Minipa ET-2028B;
+	\item 01 fonte de alimentação Politerm POL-16E;
+	\item 01 placa de Aquisição de Dados NI  USB-6009;
+	\item 01 filtro \textit{anti-aliasing} (100Hz - 4ª ordem);
+	\item 01 regulador de tensão com CI LM7805;
 	\item fios para fazer as ligações. 
 \end{itemize}
 
 O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão e o GND da fonte, conforme indicação na placa da Figura \ref{fig:efeito-hall}, com "-" e "+", indicando, respectivamente, o GND e os 5V. O pino de sinal foi conectado a uma porta de entrada analógica da placa DAQ.
 
-No LabVIEW foi montada uma interface representada por um LED, e também por um gráfico (???), conforme a Figura XX.
+No LabVIEW foi montada uma interface representada por um LED, e também por um gráfico (???),\todo{existe a tela que utilizamos?} conforme a Figura XX.
 
 \chapter{Resultados e Discussões}
 
