@@ -34,19 +34,11 @@
 \todo{arrumar datas}
 
 \chapter{Introdução}
-<<<<<<< HEAD
 Nesta atividade de laboratório, tem-se objetivo de explorar e entender o funcionamento dos efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e outro de efeito Hall linear.
 
 \chapter{Metodologia Experimental}
 \section{Sensor potenciométrico}
 Para a atividade do sensor potenciométrico, foi desenvolvido um pêndulo cujo eixo estava conectado a um potenciômetro. A construção está ilustrada na Figura \ref{fig:pendulo}:
-=======
-Nesta atividade de laboratório foram explorados os efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e um sensor de Efeito Hall Linear.
-
-\chapter{Metodologia Experimental}
-\section{Sensor potênciométrico}
-Para a atividade do sensor potenciométrico, foi desenvolvido um pêndulo cujo eixo estava conectado a um potenciômetro. A construção está ilustrada na figura \ref{fig:pendulo}:
->>>>>>> origin/master
 
 \begin{figure}[H]
 \centering
@@ -67,11 +59,7 @@ Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:p
 
 onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
 
-<<<<<<< HEAD
 A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com esse experimento, pode-se realizar um \textit{fit} cuja função foi utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da Equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na Figura \ref{fig:pendulo}:
-=======
-A fim de extrair a função de transferência do sensor, realizou-se um experimento com repetição onde, através de um voltímetro, mediu-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com este experimento, pode-se realizar um \textit{fit} cuja função será utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na figura \ref{fig:pendulo}:
->>>>>>> origin/master
 
 \begin{equation}
 	R(\theta) = R_0 + R_1 \times \theta
@@ -80,11 +68,7 @@ A fim de extrair a função de transferência do sensor, realizou-se um experime
 
 onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistência elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa à sua posição de repouso.
 
-<<<<<<< HEAD
 Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 \todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
-=======
-Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados 2 reguladores de tensão elétrica: um \textit{LM7805}\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e um regulador \textit{LM7905} \todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V com uma distribuição uniforme de probabilidade. A incerteza correspondente pode ser obtida pela equação \ref{eq:incerteza-regulador}:
->>>>>>> origin/master
 
 \begin{equation}
 	\delta_{regulador} = \frac{\Delta_{regulador}}{\sqrt{3}} \approx 0.12 V
@@ -93,11 +77,7 @@ Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alim
 
 \subsection{Modelagem do sistema de aquisição de dados do pêndulo}
 
-<<<<<<< HEAD
 Para obter a resposta temporal do pêndulo, foi utilizado um mecanismo de aquisição de dados conforme a Figura \ref{fig:pendulo-fluxo-medidas}:
-=======
-Para obter a resposta temporal do pêndulo, foi utilizado um mecanismo de aquisição de dados conforme a figura \ref{fig:pendulo-fluxo-medidas}:
->>>>>>> origin/master
 
 \begin{figure}[H]
 \centering
@@ -127,14 +107,9 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 
 Para a etapa E1, utilizou-se um 
 
+de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
 
- de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
-
-<<<<<<< HEAD
 Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741} configurado como um seguidor de tensão, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
-=======
-Para a etapa E2, utilizou-se um amplificador operacional LM741 configurado como um buffer de tensão, conforme o circuito elétrico apresentado na figura \ref{fig:buffer-tensão}:
->>>>>>> origin/master
 
 \begin{figure}[H]
 \centering
@@ -240,8 +215,8 @@ onde $f$ é a função de medição, $\delta_f$ é a incerteza propagada para $f
 Com o software Wolfram Mathematica, é fácil aproximar a incerteza propagada dos valores dos componentes adicionados ao filtro para a frequência de corte real do filtro. Nas Equações \ref{eq:incerteza-polo-1} e \ref{eq:incerteza-polo-2}, estão indicadas as incertezas propagadas da frequência de corte para cada um dos pólos do filtro. Neste cálculo, as incertezas de parâmetros do amplificador operacional foram desconsideradas para simplificar os cálculos.
 
 \begin{eqnarray}
-	f_{1,2} = 98 \pm 20 \label{eq:incerteza-polo-1} \\
-	f_{3,4} = 98 \pm 27 \label{eq:incerteza-polo-2}
+	f_{1,2} = 98 \pm 20 \label{eq:incerteza-polo-1} \text{ Hz} \\
+	f_{3,4} = 98 \pm 27 \label{eq:incerteza-polo-2} \text{ Hz} 
 \end{eqnarray}
 
 \noindent
