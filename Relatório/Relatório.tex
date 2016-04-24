@@ -12,10 +12,10 @@
 	{../Resources/MATLAB/images/}
 }
 
-\title{Alguns dos Efeitos Físicos Explorados em Sensores}
+\title{Alguns Efeitos Físicos Explorados em Sensores}
 \author{Rogiel Sulzbach \and Rodrigo de Castro Silveira \and Yi Chen Wu}
 \startdate{28 de março de 2016}
-\finishdate{04 de abril de 2016}
+\finishdate{24 de abril de 2016}
 \emails{
 	\emailaddress{R.J.S.}{rogiel@rogiel.com},
 	\emailaddress{R.C.S.}{csilveira.rodrigo@gmail.com} e
@@ -174,11 +174,7 @@ Os pólos da função de transferência da Equação \ref{eq:filtro-tf-completa}
 \noindent
 onde $p_1$, $p_2$, $p_3$ e $p_4$ são os pólos da função da transferência ideal do filtro.
 
-<<<<<<< HEAD
-Resolvendo as equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 $Hz$, uma possível solução para o valores (utilizando valores comerciais de resistores e capacitores) é dada pela tabela \ref{tab:filtro-valores}:
-=======
-Resolvendo as Equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 Hz, uma possível solução para os valores dos resistores($R_1$ e $R_2$) e capacitores($C_1$ e $C_2$) utilizando valores comerciais é dada pela Tabela \ref{tab:filtro-valores}:
->>>>>>> origin/master
+Resolvendo as Equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 $Hz$, uma possível solução para os valores dos resistores($R_1$ e $R_2$) e capacitores($C_1$ e $C_2$) utilizando valores comerciais é dada pela Tabela \ref{tab:filtro-valores}:
 
 \begin{table}[H]
 \centering
@@ -201,11 +197,7 @@ Resolvendo as Equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \re
 \label{tab:filtro-valores}
 \end{table}
 
-<<<<<<< HEAD
-Com os componentes com valores indicados na tabela, \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98 $Hz$, muito próximo da frequência de 100 $Hz$ desejada. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela equação \ref{eq:incerteza-propagada}:
-=======
-Com os componentes cujos valores indicados na Tabela \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98Hz, muito próximo da frequência de 100Hz, que é a frequência desejada para este filtro ativo. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela Equação \ref{eq:incerteza-propagada}:
->>>>>>> origin/master
+Com os componentes cujos valores indicados na Tabela \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98 $Hz$, muito próximo da frequência de 100 $Hz$, que é a frequência desejada para este filtro ativo. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela Equação \ref{eq:incerteza-propagada}:
 
 \begin{equation}
 	\delta_f = \sqrt{
@@ -271,11 +263,7 @@ Foi medida a tensão elétrica sobre um dos resistores intermediários do modelo
 
 \label{sec:pendulo-calibracao-condicionado}
 
-<<<<<<< HEAD
-Para extrair a função de transferência experimental do pêndulo com todo circuito de condicionamento acoplado à ele foi utilizado um simples programa no LabVIEW que extrai 500 amostras do sinal à uma frequência de 1 $kHz$ e calcula a média destes valores. O valor da média das 500 amostras era utilizado como uma única medida. Assumindo que o ruído gerado pelo conversor analógico-digital ou outra parte do circuito condicionador seja ruído Gaussiano aditivo branco (AWGN) com média zero logo, a variável estocástica de ruído produzida pelo condicionamento será minimizada.
-=======
-Para extrair a função de transferência experimental do pêndulo com todo circuito de condicionamento acoplado a ele, foi utilizado um simples programa no LabVIEW que extrai 500 amostras do sinal a uma frequência de 1kHz e calcula-se a média destes valores. O valor da média das 500 amostras foi utilizado como uma única medida. Assumindo que o ruído gerado pelo conversor analógico-digital ou outra parte do circuito condicionador seja ruído Gaussiano aditivo branco (AWGN) com média zero, logo, a variável estocástica de ruído produzida pelo condicionamento será minimizada.
->>>>>>> origin/master
+Para extrair a função de transferência experimental do pêndulo com todo circuito de condicionamento acoplado a ele, foi utilizado um simples programa no LabVIEW que extrai 500 amostras do sinal a uma frequência de 1 $kHz$ e calcula-se a média destes valores. O valor da média das 500 amostras foi utilizado como uma única medida. Assumindo que o ruído gerado pelo conversor analógico-digital ou outra parte do circuito condicionador seja ruído Gaussiano aditivo branco (AWGN) com média zero, logo, a variável estocástica de ruído produzida pelo condicionamento será minimizada.
 
 Com o pêndulo alimentado na mesma forma do experimento sem condicionamento, o dispositivo DAQ foi configurado com entradas digitais diferenciais com o terminal negativo conectado ao terra analógico do regulador de tensão elétrica e o terminal positivo conectado ao pino intermediário do potenciômetro do pêndulo.
 
@@ -285,11 +273,7 @@ Após a realização das medidas sem e com condicionamento, foi feito um ajuste 
 
 \subsection{Curva temporal do pêndulo}
 
-<<<<<<< HEAD
-Para extrair a curva temporal do pêndulo foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados de forma temporal à uma taxa de amostragem de 250 $Hz$ com 2000 amostras totalizando 8 segundos de aquisição de dados.
-=======
-Para extrair a curva temporal do pêndulo, foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados experimentais de forma temporal a uma taxa de amostragem de 250 Hz com 2000 amostras, totalizando 8 segundos de aquisição de dados.
->>>>>>> origin/master
+Para extrair a curva temporal do pêndulo, foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados experimentais de forma temporal a uma taxa de amostragem de 250 $Hz$ com 2000 amostras, totalizando 8 segundos de aquisição de dados.
 
 O formato da onda foi exportado em formato TSV (\textit{tab separated values}) que pode ser importado diretamente no MATLAB, no Wolfram Mathematica ou no LabVIEW posterior à aquisição para processamento dos dados. O formato escolhido foi feito pela facilidade de importação em praticamente qualquer programa que possa manipular os dados. Não foi adicionada nenhuma \textit{header} ao arquivo.
 
@@ -316,13 +300,8 @@ Para a realização do experimento, foram utilizados os seguintes materiais e in
 	\item 01 multímetro digital Minipa ET-2028B;
 	\item 01 fonte de alimentação Politerm POL-16E;
 	\item 01 placa de Aquisição de Dados NI  USB-6009;
-<<<<<<< HEAD
 	\item 01 filtro \textit{anti-aliasing} (100 $Hz$ - 4ª ordem);
-	\item 01 regulador de tensão com CI LM7805;
-=======
-	\item 01 filtro \textit{anti-aliasing} (100Hz - 4ª ordem);
 	\item 01 regulador de tensão elétrica com CI LM7805;
->>>>>>> origin/master
 	\item fios para fazer as ligações. 
 \end{itemize}
 
