@@ -310,10 +310,11 @@ O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão e o 
 No LabVIEW foi montada uma interface representada por um LED, e também por um gráfico (???),\todo{existe a tela que utilizamos?} conforme a Figura XX.
 
 \chapter{Resultados e Discussões}
+\section{Pêndulo}
 
 Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, levantamos as seguintes medidas a fim de obter uma relação de tensão elétrica em função do angulo do pêndulo. A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas utilizando o pêndulo sem circuito de condicionamento:
 
-\section{Função de transferência sem condicionamento}
+\subsection{Função de transferência sem condicionamento}
 
 \begin{table}[H]
 \centering
@@ -379,7 +380,7 @@ De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao}) e a f
 \label{fig:pendulo-tf-sem-cond}
 \end{figure}
 
-\section{Função de transferência com condicionamento}
+\subsection{Função de transferência com condicionamento}
 
 Na Tabela \ref{tab:pendulo-calibracao-condicionado}, estão apresentados os dados experimentais medidos utilizando o circuito de condicionamento:
 
@@ -445,7 +446,7 @@ De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao-condici
 \label{fig:pendulo-tf-com-cond}
 \end{figure}
 
-\section{Curva temporal do pêndulo}
+\subsection{Curva temporal do pêndulo}
 
 A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvolvido uma aplicação no LabVIEW que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na figura \ref{fig:pendulo-LabVIEW} está mostrado uma imagem do programa utilizado.
 
@@ -503,7 +504,7 @@ Na figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a compone
 
 As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo, 
 
-\section{Medição à 3 fios}
+\subsection{Medição à 3 fios}
 
 Considerando a ponte de \textit{Wheatstone} da figura \ref{fig:3fios-wheatstone}
 
@@ -553,7 +554,7 @@ onde foi adicionado um terceiro fio representado pela resistência $R_{f3}$ que 
 
 \todo{equacionar isso}
 
-\section{Medição à 4 fios}
+\subsection{Medição à 4 fios}
 
 Embora o método à 3 fios melhore bastante a qualidade da medida, há um offset dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de \textbf{método à 4 fios}. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e através de lei de Ohm, pode-se extrair o valor de resistência do sensor. Na figura \ref{fig:4wire-circuit} está apresentado o esquemático elético equivalente deste método.
 
@@ -604,9 +605,13 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{discutir quantidade de amostras (medidas obtidas) para cada ângulo versus tensão.}
 \todo{calcular a incerteza de TODAS medidas}
 
-
+\section{Sensor de Efeito Hall Linear}
 \todo{experimento do efeito hall}
+
+\section{Módulo Sensor LED}
 \todo{experimento do led}
+
+
 
 \chapter{Conclusões}
 
