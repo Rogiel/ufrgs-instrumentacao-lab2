@@ -23,7 +23,7 @@
 }
 \resume{Exploração de um sensor potenciométrico utilizado para estimar a curva de posição em função do tempo de um pêndulo, exploração da medida de campo magnético através de um sensor eletrônico de efeito Hall e experimentação do acionamento de um conjunto de 2 \textit{LEDs} utilizando o software LabVIEW.}
 \abstract{Exploration of a potentiometric sensor used to estimate the time curve of a pendulum, measurement of a magnetic field using a Hall sensor and experimentation of a trigger system for a group of 2 LEDs using LabVIEW software.}
-\keywords{pêndulo; sensor potenciométrico; LabVIEW \todo{mais keywords...}}
+\keywords{pêndulo; sensor potenciométrico; efeito Hall; LabVIEW.}
 \institute{Universidade Federal do Rio Grande do Sul, Departamento de Engenharia Elétrica, Curso de Engenharia Elétrica, Instrumentação A, Profs. Dr. Alexandre Balbinot e Dra. Léia Bagesteiro}
 
 \headertext{Efeitos físicos}
@@ -66,9 +66,9 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 	\label{eq:pendulo-tf-forma}
 \end{equation}
 
-onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistência elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa à sua posição de repouso.
+onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistência elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa a sua posição de repouso.
 
-Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 \todo{colocar o fabricante, existem vários, confirmar em cima do CI} de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
+Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 \todo{colocar o fabricante, existem vários, confirmar em cima do CI}, de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
 
 \begin{equation}
 	\delta_{regulador} = \frac{\Delta_{regulador}}{\sqrt{3}} \approx 0.12 V
@@ -109,7 +109,7 @@ Para a etapa E1, utilizou-se um
 
 de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
 
-Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741} configurado como um seguidor de tensão, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
+Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741} configurado como um seguidor de tensão elétrica, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
 
 \begin{figure}[H]
 \centering
@@ -131,7 +131,7 @@ Para a etapa E3, utilizou-se um filtro ativo anti-alias do tipo \textit{Butterwo
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Filtro-estagio.pdf}
-\caption{Esquemático elétrico do buffer de tensão}
+\caption{Esquemático elétrico do \textit{buffer} de tensão elétrica}
 \label{fig:filtro-estagio}
 \end{figure}
 
@@ -153,7 +153,7 @@ A associação dos estágios é dada pela multiplicação das funções de trans
 \end{equation}
 
 \noindent
-onde a função de transferência resultante é dada pela equação \ref{eq:filtro-tf-completa}:
+onde a função de transferência resultante é dada pela Equação \ref{eq:filtro-tf-completa}:
 
 \begin{equation}
 	\small
@@ -162,7 +162,7 @@ onde a função de transferência resultante é dada pela equação \ref{eq:filt
 	\label{eq:filtro-tf-completa}
 \end{equation}
 
-Os pólos da função de transferência da equação \ref{eq:filtro-tf-completa}, estão definidos como as frequências das equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4}:
+Os pólos da função de transferência da Equação \ref{eq:filtro-tf-completa}, estão definidos como as frequências das Equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4}:
 
 \begin{eqnarray}
 	p_{1} &=& \frac{-\sqrt{\left(C_1 R_1+C_1 R_2\right){}^2-4 C_1 C_2 R_1 R_2}-C_1 R_1-C_1 R_2}{2 C_1 C_2 R_1 R_2} \label{eq:filtro-tf-polo1} \\
@@ -174,7 +174,7 @@ Os pólos da função de transferência da equação \ref{eq:filtro-tf-completa}
 \noindent
 onde $p_1$, $p_2$, $p_3$ e $p_4$ são os pólos da função da transferência ideal do filtro.
 
-Resolvendo as equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 Hz, uma possível solução para o valores (utilizando valores comerciais de resistores e capacitores) é dada pela tabela \ref{tab:filtro-valores}:
+Resolvendo as Equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \ref{eq:filtro-tf-polo3} e \ref{eq:filtro-tf-polo4} para a frequência de 100 Hz, uma possível solução para os valores dos resistores($R_1$ e $R_2$) e capacitores($C_1$ e $C_2$) utilizando valores comerciais é dada pela Tabela \ref{tab:filtro-valores}:
 
 \begin{table}[H]
 \centering
@@ -197,7 +197,7 @@ Resolvendo as equações \ref{eq:filtro-tf-polo1}, \ref{eq:filtro-tf-polo2}, \re
 \label{tab:filtro-valores}
 \end{table}
 
-Com os componentes com valores indicados na tabela, \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98 Hz, muito próximo da frequência de 100Hz desejada. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela equação \ref{eq:incerteza-propagada}:
+Com os componentes cujos valores indicados na Tabela \ref{tab:filtro-valores}, a frequência de corte efetiva do filtro é de 98Hz, muito próximo da frequência de 100Hz, que é a frequência desejada para este filtro ativo. A determinação da incerteza propagada dos componentes passivos para a frequência do filtro pode ser obtida utilizando a regra de propagação pela série de Taylor expressa pela Equação \ref{eq:incerteza-propagada}:
 
 \begin{equation}
 	\delta_f = \sqrt{
@@ -212,7 +212,7 @@ onde $f$ é a função de medição, $\delta_f$ é a incerteza propagada para $f
 
 \todo{referenciar o script do mathematica}
 
-Com o software Wolfram Mathematica, é fácil aproximar a incerteza propagada dos valores dos componentes adicionados ao filtro para a frequência de corte real do filtro. Nas Equações \ref{eq:incerteza-polo-1} e \ref{eq:incerteza-polo-2}, estão indicadas as incertezas propagadas da frequência de corte para cada um dos pólos do filtro. Neste cálculo, as incertezas de parâmetros do amplificador operacional foram desconsideradas para simplificar os cálculos.
+Com o \textit{software} Wolfram Mathematica, é fácil aproximar a incerteza propagada dos valores dos componentes adicionados ao filtro para a frequência de corte real do filtro. Nas Equações \ref{eq:incerteza-polo-1} e \ref{eq:incerteza-polo-2}, estão indicadas as incertezas propagadas da frequência de corte para cada um dos pólos do filtro. Neste cálculo, as incertezas de parâmetros do amplificador operacional foram desconsideradas para simplificar os cálculos.
 
 \begin{eqnarray}
 	f_{1,2} = 98 \pm 20 \label{eq:incerteza-polo-1} \text{ Hz} \\
@@ -222,26 +222,26 @@ Com o software Wolfram Mathematica, é fácil aproximar a incerteza propagada do
 \noindent
 onde $f_{1,2}$ é a frequência de corte para os pólos 1 e 2 e $f_{3,4}$ é a frequência de corte para os pólos 3 e 4.
 
-Logo, através da análise anterior, podemos concluir que mesmo no pior caso de incerteza dos componentes, o filtro ainda não será fator que cause influência no valor amostrado.
+Logo, através da análise anterior, pode-se concluir que, mesmo no pior caso de incerteza dos componentes, o filtro ainda não será o fator que cause influência no valor amostrado.
 
-Para o processo de amostragem E4, o DAQ USB-6009 da National Instruments foi utilizado para levantar os dados. A entrada lógica deste dispositivo possui 14 bits e uma taxa de amostragem de 48 $kS/s$ e possui uma resolução de tensão elétrica na entrada analógica de $1.53 mV$.
+Para o processo de amostragem E4, o DAQ USB-6009 da \textit{National Instruments} foi utilizado para levantar os dados experimentais. A entrada lógica deste dispositivo possui 14 \textit{bits} e uma taxa de amostragem de 48 $kS/s$ e possui uma resolução de tensão elétrica na entrada analógica de $1.53 mV$.
 
 \subsection{Levantamento da função de transferência do pêndulo}
 
-Para poder estimar o valor do ângulo de inclinação do pêndulo em função da tensão elétrica medida pelo fluxo de medida mostrado na figura \ref{fig:pendulo-fluxo-medidas} e utilizando as funções de transferência definidas para cada um dos blocos, pode-se realizar a extração da função de transferência experimental do pêndulo.
+Para poder estimar o valor do ângulo de inclinação do pêndulo, em função da tensão elétrica medida pelo fluxo de medida, que foi mostrado na Figura \ref{fig:pendulo-fluxo-medidas}, e, utilizando as funções de transferência definidas para cada um dos blocos, pode-se realizar a extração da função de transferência experimental do pêndulo.
 
-A função de transferência para o sensor já foi obtida no experimento anterior e é dada na equação \ref{eq:pendulo-tf-forma}. Contudo, para utilizá-la nas medidas realizadas, é preciso que a função de transferência inversa seja obtida, conforme a equação \ref{eq:pendulo-tf-forma-inversa}
+A função de transferência para o sensor já foi obtida no experimento anterior e é dada na equação \ref{eq:pendulo-tf-forma}. Contudo, para utilizá-la nas medidas realizadas, é preciso que a função de transferência inversa seja obtida, conforme a Equação \ref{eq:pendulo-tf-forma-inversa}
 
 \begin{equation}
 	\theta = V^{-1}(\theta) = \theta_0 + \theta_1 \times V
 	\label{eq:pendulo-tf-forma-inversa}
 \end{equation}
 
-onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o \textit{offset} de ângulo correspondente ao offset inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
+onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o \textit{offset} de ângulo correspondente ao \textit{offset} inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
 
 Para que seja possível comparar os resultados obtidos com e sem o circuito condicionador, é imprescindível que sejam extraídas as funções de transferências equivalentes do pêndulo nas duas situações.
 
-Para extrair a função de transferência experimental do pêndulo sem condicionamento foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na \ref{tab:precisão-multimetro}. A coluna da precisão é apresentada na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos.
+Para extrair a função de transferência experimental do pêndulo sem condicionamento, foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na Tabela \ref{tab:precisão-multimetro}. A coluna da precisão é apresentada na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos.
 
 
 \begin{table}[H]
@@ -259,23 +259,23 @@ Para extrair a função de transferência experimental do pêndulo sem condicion
 \end{tabular}
 \end{table}
 
-Foi medida a tensão elétrica sobre um dos resistores intermediários do modelo elétrico do pêndulo conforme a figura \ref{fig:pendulo-equivalente} onde o o pêndulo era alimentado com uma tensão elétrica simétrica de -5V e +5V. Foram feitas medidas em intervalos de 10 em 10 graus de -90 a +90 graus com duas repetições cada.
+Foi medida a tensão elétrica sobre um dos resistores intermediários do modelo elétrico do pêndulo conforme a Figura \ref{fig:pendulo-equivalente} onde o pêndulo foi alimentado com uma tensão elétrica simétrica de -5V e +5V. Foram feitas medidas em intervalos de 10 em 10 graus de -90 a +90 graus com duas repetições cada medição.
 
 \label{sec:pendulo-calibracao-condicionado}
 
-Para extrair a função de transferência experimental do pêndulo com todo circuito de condicionamento acoplado à ele foi utilizado um simples programa no LabVIEW que extrai 500 amostras do sinal à uma frequência de 1kHz e calcula a média destes valores. O valor da média das 500 amostras era utilizado como uma única medida. Assumindo que o ruído gerado pelo conversor analógico-digital ou outra parte do circuito condicionador seja ruído Gaussiano aditivo branco (AWGN) com média zero logo, a variável estocástica de ruído produzida pelo condicionamento será minimizada.
+Para extrair a função de transferência experimental do pêndulo com todo circuito de condicionamento acoplado a ele, foi utilizado um simples programa no LabVIEW que extrai 500 amostras do sinal a uma frequência de 1kHz e calcula-se a média destes valores. O valor da média das 500 amostras foi utilizado como uma única medida. Assumindo que o ruído gerado pelo conversor analógico-digital ou outra parte do circuito condicionador seja ruído Gaussiano aditivo branco (AWGN) com média zero, logo, a variável estocástica de ruído produzida pelo condicionamento será minimizada.
 
-Com o pêndulo alimentado na mesma forma do experimento sem condicionamento, dispositivo DAQ foi configurado com entradas digitais diferenciais com o terminal negativo conectado ao terra analógico do regulador de tensão elétrica e o terminal positivo conectado ao pino intermediário do potenciômetro do pêndulo.
+Com o pêndulo alimentado na mesma forma do experimento sem condicionamento, o dispositivo DAQ foi configurado com entradas digitais diferenciais com o terminal negativo conectado ao terra analógico do regulador de tensão elétrica e o terminal positivo conectado ao pino intermediário do potenciômetro do pêndulo.
 
-Conforme o experimento sem condicionamento, o experimento realizado foi fatorial completo com 1 fato controlável à 19 níveis (de -90 à +90 graus) com 2 repetições por célula.
+Conforme o experimento sem condicionamento, o experimento realizado foi fatorial completo com um fator controlável a 19 níveis (de -90 a +90 graus) com duas repetições por célula.
 
-Após a realização das medidas sem e com condicionamento, foi feito um ajuste de curvas no software Wolfram Mathematica para obter a função de transferência experimental para cada um dos experimentos que deve ser dada na forma da equação \ref{eq:pendulo-tf-forma-inversa}.
+Após a realização das medidas sem e com condicionamento, foi feito um ajuste de curvas no \textit{software} Wolfram Mathematica para obter a função de transferência experimental para cada um dos experimentos que deve ser dada na forma da Equação \ref{eq:pendulo-tf-forma-inversa}.
 
 \subsection{Curva temporal do pêndulo}
 
-Para extrair a curva temporal do pêndulo foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados de forma temporal à uma taxa de amostragem de 250 Hz com 2000 amostras totalizando 8 segundos de aquisição de dados.
+Para extrair a curva temporal do pêndulo, foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados experimentais de forma temporal a uma taxa de amostragem de 250 Hz com 2000 amostras, totalizando 8 segundos de aquisição de dados.
 
-O formato de onda foi exportado em formato TSV (\textit{tab separated values}) que pode ser importado diretamente no MATLAB, no Wolfram Mathematica ou no LabVIEW posterior à aquisição para processamento dos dados. O formato escolhido foi feito pela facilidade de importação em praticamente qualquer programa que possa manipular os dados. Não foi adicionada nenhuma \textit{header} ao arquivo.
+O formato da onda foi exportado em formato TSV (\textit{tab separated values}) que pode ser importado diretamente no MATLAB, no Wolfram Mathematica ou no LabVIEW posterior à aquisição para processamento dos dados. O formato escolhido foi feito pela facilidade de importação em praticamente qualquer programa que possa manipular os dados. Não foi adicionada nenhuma \textit{header} ao arquivo.
 
 Após a aquisição dos dados, o script do MATLAB localizado na página \todo{referenciar o script}, foi executado para gerar os gráficos e realizar a transformada de Fourier do sinal adquirido.
 
@@ -291,7 +291,7 @@ Neste experimento foi feita a interface com um módulo sensor de \textit{Efeito 
 \label{fig:efeito-hall}
 \end{figure}
 
-Para a realização do experimento foram utilizados os seguintes materiais e instrumentos:
+Para a realização do experimento, foram utilizados os seguintes materiais e instrumentos:
 
 \begin{itemize}
 	\item Ferramenta computacional LabVIEW;
@@ -301,13 +301,13 @@ Para a realização do experimento foram utilizados os seguintes materiais e ins
 	\item 01 fonte de alimentação Politerm POL-16E;
 	\item 01 placa de Aquisição de Dados NI  USB-6009;
 	\item 01 filtro \textit{anti-aliasing} (100Hz - 4ª ordem);
-	\item 01 regulador de tensão com CI LM7805;
+	\item 01 regulador de tensão elétrica com CI LM7805;
 	\item fios para fazer as ligações. 
 \end{itemize}
 
-O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão e o GND da fonte, conforme indicação na placa da Figura \ref{fig:efeito-hall}, com "-" e "+", indicando, respectivamente, o GND e os 5V. O pino de sinal foi conectado a uma porta de entrada analógica da placa DAQ.
+O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão elétrica e o GND, \textit{ground}, da fonte, conforme indicação na placa da Figura \ref{fig:efeito-hall}, com "-" e "+", indicando, respectivamente, o GND e os 5V. O pino de sinal foi conectado a uma porta de entrada analógica da placa DAQ.
 
-No LabVIEW foi montada uma interface representada por um LED, e também por um gráfico (???),\todo{existe a tela que utilizamos?} conforme a Figura XX.
+No LabVIEW foi montada uma interface representada por um \textit{LED}, e também por um gráfico (???),\todo{existe a tela que utilizamos?} conforme a Figura XX.
 
 \chapter{Resultados e Discussões}
 \section{Pêndulo}
