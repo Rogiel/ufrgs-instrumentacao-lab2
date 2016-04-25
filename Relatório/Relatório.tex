@@ -45,6 +45,8 @@ Para a atividade do sensor potenciométrico, foi desenvolvido um pêndulo cujo e
 \caption{Estrutura do pêndulo}
 \label{fig:pendulo}
 \end{figure}
+
+\noindent
 onde $\theta$ é o ângulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo. Para este experimento, foi utilizado o comprimento do pêndulo $L=27.5cm$(centímetro), medido com uma régua da Maped cuja resolução é de $0.1cm$.
 
 Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:pendulo-equivalente}:
@@ -56,6 +58,7 @@ Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:p
 \label{fig:pendulo-equivalente}
 \end{figure}
 
+\noindent
 onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
 
 A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com esse experimento, pode-se realizar um \textit{fit} cuja função foi utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da Equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na Figura \ref{fig:pendulo}:
@@ -65,6 +68,7 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 	\label{eq:pendulo-tf-forma}
 \end{equation}
 
+\noindent
 onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistência elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa a sua posição de repouso.
 
 Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805\todo{colocar o fabricante, existem vários, confirmar em cima do CI}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 \todo{colocar o fabricante, existem vários, confirmar em cima do CI}, de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
