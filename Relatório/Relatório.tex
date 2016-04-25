@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 
 \newtoggle{attachments}
-\togglefalse{attachments}
+\toggletrue{attachments}
 
 \graphicspath{
 	{../Resources/Images/}
@@ -109,7 +109,7 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 \label{fig:pendulo-cadeia-medidas}
 \end{figure}
 
-Para a etapa E1, utilizou-se um potenciômetro (resistor ajustável)de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
+Para a etapa E1, utilizou-se um potenciômetro de $(4366 \pm 3.097) V$ com uma incerteza do tipo A, extraída com 10 medições utilizando um multímetro Politerm POL-41A.
 
 Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741} configurado como um seguidor de tensão elétrica, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
 
@@ -210,9 +210,7 @@ Com os componentes cujos valores indicados na Tabela \ref{tab:filtro-valores}, a
 \end{equation}
 
 \noindent
-onde $f$ é a função de medição, $\delta_f$ é a incerteza propagada para $f$, $k$ são as variáveis com incertezas definidas e $\delta_k$ são as incertezas para cada variável $k$.
-
-\todo{referenciar o script do mathematica}
+onde $f$ é a função de medição, $\delta_f$ é a incerteza propagada para $f$, $k$ são as variáveis com incertezas definidas e $\delta_k$ são as incertezas para cada variável $k$. O script completo utilizado para cálculo deste procedimento está disponível na Página \pageref{att:incerteza-filtro}.
 
 Com o \textit{software} Wolfram Mathematica, é fácil aproximar a incerteza propagada dos valores dos componentes adicionados ao filtro para a frequência de corte real do filtro. Nas Equações \ref{eq:incerteza-polo-1} e \ref{eq:incerteza-polo-2}, estão indicadas as incertezas propagadas da frequência de corte para cada um dos pólos do filtro. Neste cálculo, as incertezas de parâmetros do amplificador operacional foram desconsideradas para simplificar os cálculos.
 
@@ -294,7 +292,85 @@ Para extrair a curva temporal do pêndulo, foi utilizada uma configuração igua
 
 O formato da onda foi exportado em formato TSV (\textit{tab separated values}) que pode ser importado diretamente no MATLAB, no Wolfram Mathematica ou no LabVIEW posterior à aquisição para processamento dos dados. O formato escolhido foi feito pela facilidade de importação em praticamente qualquer programa que possa manipular os dados. Não foi adicionada nenhuma \textit{header} ao arquivo.
 
-Após a aquisição dos dados, o script do MATLAB localizado na página \todo{referenciar o script}, foi executado para gerar os gráficos e realizar a transformada de Fourier do sinal adquirido.
+Após a aquisição dos dados, o script do MATLAB localizado na Página \pageref{att:script-matlab}, foi executado para gerar os gráficos e realizar a transformada de Fourier do sinal adquirido.
+
+
+\section{Medição a 3 fios}
+
+Considerando a ponte de \textit{Wheatstone} da Figura \ref{fig:3fios-wheatstone}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge.pdf}
+\caption{Ponte de Wheatstone equilibrada}
+\label{fig:3fios-wheatstone}
+\end{figure}
+
+\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência elétrica máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e $V_o$ é a tensão elétrica de saída da ponte. É fácil provar que a equação correspondente ao circuito é dado pela Equação \ref{eq:wheatstone-vo}:
+
+\begin{equation}
+	V_o = \left({{R_2}\over{R_1 + R_2}} - {{R_x}\over{R_x + R_3}}\right)V_{cc}
+	\label{eq:wheatstone-vo}
+\end{equation}
+
+A ponte de Wheatstone pode ser vista como um circuito capaz de medir e aumentar pequenas diferenças de resistência elétrica de um sensor arbitrário em uma saída de tensão elétrica, com sensibilidade maior que a sensibilidade do sensor. Isto é, para uma pequena variação, é possível obter (com uma ponte devidamente projetada) uma saída em tensão elétrica com maior sensibilidade, quando comparada ao sensor isolado.
+
+Embora esta característica seja ideal para utilizar em sensores cuja amplitude de variação de resistência elétrica seja muito pequena, isto também significa que não é possível desprezar as resistências elétricas intrínsecas dos fios de conexão do sensor com a ponte. Como a ponte de Wheatstone pode ser utilizada como um condicionador para pequenas variações de resistência elétrica, uma pequena inserção de resistência elétrica do fio pode causar um \textit{bias} significante na saída da ponte.
+
+Com a finalidade de compensar esta não idealidade, é possível realizar medidas utilizando técnicas denominadas de medida a 3 fios e medida a 4 fios.
+
+Nestas técnicas, um fio com as mesmas especificações de comprimento, seção reta e material é utilizado com a finalidade de tentar obter uma resistência elétrica semelhante ao fio de conexão do sensor e minimizar a significância do fio na medida. Este método pode ser expresso pelo seguinte circuito elétrico equivalente da Figura \ref{fig:wheatstone-wire-model}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge-WiresModel.pdf}
+\caption{Ponte de Wheatstone com a resistência elétrica dos fios}
+\label{fig:wheatstone-wire-model}
+\end{figure}
+
+\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e o resistores $R_{fi}$ são resistências intrínsecas dos fios e espera-se que para fios de mesmo material, comprimento e seção reta, seus valores sejam semelhantes.
+
+Conforme observa-se na Figura \ref{fig:wheatstone-wire-model}, para os mesmos valores de $R_1$, $R_2$, $R_3$ e $R_f$ o valor de tensão elétrica de saída da ponte é diferente de zero. Isto é causado devido ao desbalanceamento da ponte causado pela resistência elétrica dos fios de conexão do sensor, representados por $R_{f1}$ e $R_{f2}$. Caso o sensor tenha uma variação pequena de resistência elétrica, o \textit{bias} causado pelas resistências elétrica em série pode ser muito significante e gerar erros. Para reduzir o impacto dessa resistência elétrica em série, pode-se utilizar o método de medida a 3 fios, onde um terceiro fio é conectado diretamente entre o sensor e um dos terminais do voltímetro, conforme Figura \ref{fig:wheatstone-3wire}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge-3Wire.pdf}
+\caption{Ponte de Wheatstone com medida a 3 fios}
+\label{fig:wheatstone-3wire}
+\end{figure}
+
+\noindent onde foi adicionado um terceiro fio representado pela resistência $R_{f3}$ que representa a resistência elétrica do fio de conexão direta entre o voltímetro e o sensor. Nota-se que, para que o método seja eficaz, é necessário que o voltímetro tenha uma impedância elétrica muito alta a fim de evitar que haja uma queda de tensão elétrica sobre o resistor $R_{f3}$.
+
+É possível observar claramente no resultado da simulação que o \textit{bias} produzido por esta construção ficou em $1.776 fV$, que dada a sensibilidade de um multímetro comercial de baixo custo, é imperceptível e a incerteza é no mínimo 1000 vezes superior (na ordem de mV).
+
+Na Equação \ref{eq:3fios-modelo} está apresentado a equação elétrica correspondente ao valor de entrada do circuito para o modelo apresentado.
+
+\begin{equation}
+	V_{R2} = \frac{R_2 V_{cc}}{R_1 + R_2 + 2 R_f}
+	\label{eq:3fios-modelo}
+\end{equation}
+
+\section{Medição a 4 fios}
+
+Embora o método a 3 fios melhore bastante a qualidade da medida, há um \textit{offset} dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de método a 4 fios. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e, através de lei de Ohm, pode-se extrair o valor de resistência elétrica do sensor. Na Figura \ref{fig:4wire-circuit} está apresentado o esquemático elétrico equivalente deste método,
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{4WireMeasure.pdf}
+\caption{Esquemático elétrico do método de medida a 4 fios}
+\label{fig:4wire-circuit}
+\end{figure}
+
+\noindent onde $R_s$ é a resistência elétrica do sensor e $R_f$ são as resistências elétricas dos fios de conexão do sensor e dos instrumentos.
+
+Neste método, aplica-se diretamente a lei de Ohm conforme a Equação \ref{eq:ohm}:
+
+\begin{equation}
+	R_s = \frac{V_s}{I_s}
+	\label{eq:ohm}
+\end{equation}
+
+Independente da resistência elétrica dos fios, considerando que a impedância elétrica do voltímetro seja infinita ou muito grande, a queda de tensão elétrica provocada por $R_{f3}$ e $R_{f4}$ são negligenciáveis e a tensão medida sobre $R_s$ é a tensão real (respeitando a incerteza do instrumento). Para as resistências elétricas $R_{f1}$ e $R_{f2}$ a corrente elétrica que circula por elas é a mesma que circula por $R_s$, embora elas provoquem uma redução da corrente elétrica que circula pelo ramo, este é compensado na redução de tensão elétrica medida $V_s$. Logo, considerando-se somente o erro devido às conexões, o erro causado por esta construção é zero ou negligenciável.
 
 \section{Efeitos Físicos Utilizados em Sensores}
 
@@ -570,84 +646,11 @@ Na Figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a compone
 
 As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo.
 
-\subsection{Medição a 3 fios}
-
-Considerando a ponte de \textit{Wheatstone} da Figura \ref{fig:3fios-wheatstone}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge.pdf}
-\caption{Ponte de Wheatstone equilibrada}
-\label{fig:3fios-wheatstone}
-\end{figure}
-
-\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência elétrica máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e $V_o$ é a tensão elétrica de saída da ponte. É fácil provar que a equação correspondente ao circuito é dado pela Equação \ref{eq:wheatstone-vo}:
-
-\begin{equation}
-	V_o = \left({{R_2}\over{R_1 + R_2}} - {{R_x}\over{R_x + R_3}}\right)V_{cc}
-	\label{eq:wheatstone-vo}
-\end{equation}
-
-A ponte de Wheatstone pode ser vista como um circuito capaz de medir e aumentar pequenas diferenças de resistência elétrica de um sensor arbitrário em uma saída de tensão elétrica, com sensibilidade maior que a sensibilidade do sensor. Isto é, para uma pequena variação, é possível obter (com uma ponte devidamente projetada) uma saída em tensão elétrica com maior sensibilidade, quando comparada ao sensor isolado.
-
-Embora esta característica seja ideal para utilizar em sensores cuja amplitude de variação de resistência elétrica seja muito pequena, isto também significa que não é possível desprezar as resistências elétricas intrínsecas dos fios de conexão do sensor com a ponte. Como a ponte de Wheatstone pode ser utilizada como um condicionador para pequenas variações de resistência elétrica, uma pequena inserção de resistência elétrica do fio pode causar um \textit{bias} significante na saída da ponte.
-
-Com a finalidade de compensar esta não idealidade, é possível realizar medidas utilizando técnicas denominadas de \textbf{medida a 3 fios} e \textbf{medida a 4 fios}.
-
-Nestas técnicas, um fio com as mesmas especificações de comprimento, seção reta e material é utilizado com a finalidade de tentar obter uma resistência elétrica semelhante ao fio de conexão do sensor e minimizar a significância do fio na medida. Este método pode ser expresso pelo seguinte circuito elétrico equivalente da Figura \ref{fig:wheatstone-wire-model}:
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge-WiresModel.pdf}
-\caption{Ponte de Wheatstone com a resistência elétrica dos fios}
-\label{fig:wheatstone-wire-model}
-\end{figure}
-
-\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e o resistores $R_{fi}$ são resistências intrínsecas dos fios e espera-se que para fios de mesmo material, comprimento e seção reta, seus valores sejam semelhantes.
-
-Conforme observa-se na Figura \ref{fig:wheatstone-wire-model}, para os mesmos valores de $R_1$, $R_2$, $R_3$ e $R_f$ o valor de tensão elétrica de saída da ponte é diferente de zero. Isto é causado devido ao desbalanceamento da ponte causado pela resistência elétrica dos fios de conexão do sensor, representados por $R_{f1}$ e $R_{f2}$. Caso o sensor tenha uma variação pequena de resistência elétrica, o \textit{bias} causado pelas resistências elétrica em série pode ser muito significante e gerar erros. Para reduzir o impacto dessa resistência elétrica em série, pode-se utilizar o método de medida a 3 fios, onde um terceiro fio é conectado diretamente entre o sensor e um dos terminais do voltímetro, conforme Figura \ref{fig:wheatstone-3wire}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{Wheatstone-Bridge-3Wire.pdf}
-\caption{Ponte de Wheatstone com medida a 3 fios}
-\label{fig:wheatstone-3wire}
-\end{figure}
-
-\noindent onde foi adicionado um terceiro fio representado pela resistência $R_{f3}$ que representa a resistência elétrica do fio de conexão direta entre o voltímetro e o sensor. Nota-se que, para que o método seja eficaz, é necessário que o voltímetro tenha uma impedância elétrica muito alta a fim de evitar que haja uma queda de tensão elétrica sobre o resistor $R_{f3}$.
-
-É possível observar claramente no resultado da simulação que o \textit{bias} produzido por esta construção ficou em $1.776 fV$, que dada a sensibilidade de um multímetro comercial de baixo custo, é imperceptível e a incerteza é no mínimo 1000 vezes superior (na ordem de mV).
-
-\todo{equacionar isso}
-
-\subsection{Medição a 4 fios}
-
-Embora o método a 3 fios melhore bastante a qualidade da medida, há um \textit{offset} dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de \textbf{método a 4 fios}. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e, através de lei de Ohm, pode-se extrair o valor de resistência elétrica do sensor. Na Figura \ref{fig:4wire-circuit} está apresentado o esquemático elético equivalente deste método,
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{4WireMeasure.pdf}
-\caption{Esquemático elétrico do método de medida a 4 fios}
-\label{fig:4wire-circuit}
-\end{figure}
-
-\noindent onde $R_s$ é a resistência elétrica do sensor e $R_f$ são as resistências elétricas dos fios de conexão do sensor e dos instrumentos.
-
-Neste método, aplica-se diretamente a lei de Ohm conforme a Equação \ref{eq:ohm}:
-
-\begin{equation}
-	R_s = \frac{V_s}{I_s}
-	\label{eq:ohm}
-\end{equation}
-
-Independente da resistência elétrica dos fios, considerando que a impedância elétrica do voltímetro seja infinita ou muito grande, a queda de tensão elétrica provocada por $R_{f3}$ e $R_{f4}$ são negligenciáveis e a tensão medida sobre $R_s$ é a tensão real (respeitando a incerteza do instrumento). Para as resistências elétricas $R_{f1}$ e $R_{f2}$ a corrente elétrica que circula por elas é a mesma que circula por $R_s$, embora elas provoquem uma redução da corrente elétrica que circula pelo ramo, este é compensado na redução de tensão elétrica medida $V_s$. Logo, considerando-se somente o erro devido às conexões, o erro causado por esta construção é zero ou negligenciável.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \todo{sensibilidade, resolução de entrada, resolução de saída, erro de linearidade ou de conformidade, incerteza, etc, assim como, a correspondente Cadeia de Medidas Proposta (teórica) e a Cadeia de Medidas Experimental}
 
 \todo{LabVIEW+matlab}
-\todo{só matlab}
 
 \todo{determinar a sensibilidade, a resolução de entrada, resolução de saída, o erro de linearidade (ou erro de conformidade se for o caso) de seu sistema}
 
@@ -658,7 +661,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{amortecimento}
 
 \todo{medição do periodo}
-\todo{grafico de amplitude e periodo}
 
 \todo{modelo de thevenin}
 \todo{grafico saida do pot vs angulo. qual erro?}
@@ -681,11 +683,12 @@ Após de realizar este experiemento, pode-se concluir que o uso do sensor potenc
 \iftoggle{attachments}{
 	\chapter*{Anexos}
 	\section{Mathematica}
-	\includenotebook{../Resources/Mathematica/Experimento 1-1.pdf}{Experimento 1}
-
-	\section{LabVIEW}
+	\includenotebook{../Resources/Mathematica/Experimento 1-1.nb.pdf}{Pêndulo}{pendulo}
+	\includenotebooksingle{../Resources/Mathematica/Incerteza potenciometro.nb}{Incerteza do potenciômetro}{incerteza-potenciometro}
+	\includenotebooksingle{../Resources/Mathematica/Incertezas-Filtro.nb}{Incerteza do filtro}{incerteza-filtro}
 
 	\section{MATLAB}
+	\label{att:script-matlab}
 	\lstinputlisting[
 		language=MATLAB,
 		numbers=left,
