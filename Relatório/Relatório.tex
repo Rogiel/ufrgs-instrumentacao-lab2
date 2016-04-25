@@ -356,7 +356,25 @@ No LabVIEW foi implementada uma interface com dois botões, sendo um para aciona
 Com o pêndulo alimentado com a tensão elétrica simétrica de -5V e +5V, foram levantadas as seguintes medidas a fim de obter uma relação de tensão elétrica em função do angulo do pêndulo. 
 
 \subsection{Função de transferência sem condicionamento}
-A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas utilizando o pêndulo sem circuito de condicionamento:
+A Tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas utilizando o pêndulo sem circuito de condicionamento:
+
+A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao} é dada pela Equação \ref{eq:pendulo-tf-sem-cond}:
+
+\begin{equation}
+	V(\theta) = 0.028 \theta - 0.015
+	\label{eq:pendulo-tf-sem-cond}
+\end{equation}
+
+\noindent 
+ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-sem-cond-inv}
+
+\begin{equation}
+	\theta(V) = 0.53 + 36 V
+	\label{eq:pendulo-tf-sem-cond-inv}
+\end{equation}
+
+\noindent
+onde $\theta$ é o angulo de inclinação do pêndulo e $V$ é a tensão elétrica medida sobre os terminais do pêndulo.
 
 \begin{table}[]
 \centering
@@ -389,24 +407,6 @@ A tabela \ref{tab:pendulo-calibracao} contém as medidas obtidas utilizando o p�
 \label{tab:pendulo-calibracao}
 \end{table}
 
-A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao} é dada pela equação \ref{eq:pendulo-tf-sem-cond}:
-
-\begin{equation}
-	V(\theta) = 0.028 \theta - 0.015
-	\label{eq:pendulo-tf-sem-cond}
-\end{equation}
-
-\noindent 
-ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-sem-cond-inv}
-
-\begin{equation}
-	\theta(V) = 0.53 + 36 V
-	\label{eq:pendulo-tf-sem-cond-inv}
-\end{equation}
-
-\noindent
-onde $\theta$ é o angulo de inclinação do pêndulo e $V$ é a tensão elétrica medida sobre os terminais do pêndulo.
-
 O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equação \ref{eq:pendulo-sem-cond-rsquared}
 
 \begin{equation}
@@ -414,12 +414,12 @@ O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equaç�
 	\label{eq:pendulo-sem-cond-rsquared}
 \end{equation}
 
-De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao}) e a função de transferência (Equação \ref{eq:pendulo-tf-sem-cond}) ajustada pode ser visualizada na figura \ref{fig:pendulo-tf-sem-cond}
+De forma gráfica, os pontos medidos apresentados na Tabela \ref{tab:pendulo-calibracao}) e a função de transferência (Equação \ref{eq:pendulo-tf-sem-cond}) ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-sem-cond}
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{Pendulo-fit.pdf}
-\caption{Gráfico exibindo a função de transferência ajustada sobreposta às medidas experimentais}
+\caption{Gráfico exibindo a função de transferência ajustada(linha contínua) sobreposta às medidas experimentais(pontos)}
 \label{fig:pendulo-tf-sem-cond}
 \end{figure}
 
@@ -653,10 +653,10 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{calcular a incerteza de TODAS medidas}
 
 \section{Sensor de Efeito Hall Linear}
-
-
+Baseada a metodologia mencionada na seção 2.2.1, conecta-se os fios do sensor de efeito Hall com a placa DAQ. Foi verificado que quando aproxima-se um ímã ao sensor, o \textit{LED} virtual que está no painel frontal do LabVIEW acendia. Aproximando e afastando o ímã com o sensor de efeito Hall, foi verificado outro funcionamento interessante: o amplitude da tensão elétrica varia com a frequência de aproximação e afastamento do ímã, ou seja, quando maior for a rapidez essa diferença, a variação da ampiltude
+da tensão elétrica é maior. Note-se também que, se variasse com uma frequência determinada, obtêm-se um sinal do tipo onda quadrada no gráfico da amplitude de tensâo elétrica em função de tempo.
 \section{Módulo Sensor LED}
-Baseada a metodologia mencioanda na seção 2.2.2, foi feita a conexão dos fios  entre o sensor \textit{LED} com a placa de aquisição DAQ. Testou-se acionando os botôes que estão no painel frontal do diagrama mostrado na Figura \ref{fig:labview-led}. Dessa forma, foi verifado que o \textit{LED} vermelho acendia como estava esperado. Porém o \textit{LED} amarelo não acionou mesmo com botão do programa de LabVIEW ligado. Depois de algumas verificações do sensor, conclui-se que o \textit{LED} amarelo do sensor estava queimado devido ao uso indevido antes deste experimento.
+Baseada a metodologia mencionada na seção 2.2.2, foi feita a conexão dos fios  entre o sensor \textit{LED} com a placa de aquisição DAQ. Testou-se acionando os botôes que estão no painel frontal do diagrama mostrado na Figura \ref{fig:labview-led}. Dessa forma, foi verifado que o \textit{LED} vermelho acendia como estava esperado. Porém o \textit{LED} amarelo não acionou mesmo com botão do programa de LabVIEW ligado. Depois de algumas verificações do sensor, conclui-se que o \textit{LED} amarelo do sensor estava queimado devido ao uso indevido antes deste experimento.
 
 
 
