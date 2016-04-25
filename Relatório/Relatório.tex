@@ -489,7 +489,7 @@ De forma gráfica, os pontos medidos na Tabela \ref{tab:pendulo-calibracao-condi
 \label{fig:pendulo-tf-com-cond}
 \end{figure}
 
-Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observando a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}.  
+Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observando a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}, contribuindo o erro na medição.  
 
 \subsection{Curva temporal do pêndulo}
 
@@ -531,7 +531,7 @@ Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito d
 \label{fig:pendulo-curva-angulo-vs-tempo}
 \end{figure}
 
-Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textit{Fast Fourier Transform} (FFT). Na figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
+Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textit{Fast Fourier Transform} (FFT). Na Figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
 
 \begin{figure}[H]
 \centering
@@ -663,7 +663,7 @@ Baseada na metodologia mencioanda na seção 2.2.2, foi feita a conexão dos fio
 
 \chapter{Conclusões}
 
-Após de realizar este experiemento, pode-se concluir que o uso do sensor potenciométrico pode ser utilizado em diversas aplicações, tais como medição do movimento dos braços mecânicos, balança, etc. Uma vez que a resistência elétrica do potenciômetro possui característica linear. Além disso, os sensores de efeito Hall e LED possuem também muitas aplicações nos dia a dia, pois são sensores que apresentam precisões nas medidas.
+Após de realizar este experiemento, pode-se concluir que o uso do sensor potenciométrico pode ser utilizado em diversas aplicações, tais como medição do movimento dos braços mecânicos, balança, etc. Uma vez que a resistência elétrica do potenciômetro possui característica linear. Além disso, os sensores de efeito Hall e LED possuem também muitas aplicações nos dia a dia, pois são sensores que apresentam precisões nas medidas, principalmente a resposta rápida destes sensores.
 
 \iftoggle{attachments}{
 	\chapter*{Anexos}
