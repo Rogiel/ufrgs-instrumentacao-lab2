@@ -80,13 +80,22 @@
 
 
 % Attachments
-\newcommand{\includenotebook}[2]{
+\newcommand{\includenotebook}[3]{
 	\includepdf[pages={1},pagecommand={
 		\pagestyle{fancy}
 		\subsection{#2}
+		\label{att:#3}
 	}]{#1}
 	\includepdf[pages={2-},pagecommand={
 		\pagestyle{fancy}
+	}]{#1}
+}
+
+\newcommand{\includenotebooksingle}[3]{
+	\includepdf[pages={1}, pagecommand={
+		\pagestyle{fancy}
+		\subsection{#2}
+		\label{att:#3}
 	}]{#1}
 }
 
