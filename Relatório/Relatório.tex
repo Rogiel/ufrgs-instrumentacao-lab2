@@ -23,8 +23,8 @@
 	\emailaddress{Y.C.}{yichenpoa@gmail.com}
 }
 \resume{Exploração de um sensor potenciométrico utilizado para estimar a curva de posição em função do tempo de um pêndulo, exploração da medida de campo magnético através de um sensor eletrônico de efeito Hall e experimentação do acionamento de um conjunto de 2 \textit{LEDs} utilizando o software LabVIEW.}
-\abstract{Exploration of a potentiometric sensor used to estimate the time curve of a pendulum, measurement of a magnetic field using a Hall sensor and experimentation of a trigger system for a group of 2 LEDs using LabVIEW software.}
-\keywords{pêndulo; sensor potenciométrico; sensor de efeito Hall; LabVIEW.}
+\abstract{Exploration of a potentiometric sensor used to estimate the time curve of a pendulum, measurement of a magnetic field using a Hall sensor and experimen-\\tation of a trigger system for a group of 2 LEDs using LabVIEW software.}
+\keywords{pêndulo; sensor potenciométrico; sensor de efeito Hall; \\LabVIEW.}
 \institute{Universidade Federal do Rio Grande do Sul, Departamento de Engenharia Elétrica, Curso de Engenharia Elétrica, Instrumentação A, Profs. Dr. Alexandre Balbinot e Dra. Léia Bagesteiro}
 
 \headertext{Efeitos físicos}
@@ -62,7 +62,7 @@ Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:p
 \noindent
 onde $R(angulo)$ é uma resistência variável em função do ângulo $\theta$.
 
-A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com esse experimento, pode-se realizar um \textit{fit} cuja função foi utilizada como a função de transferência do sensor. Uma vez que o potenciômetro é linear, espera-se que a função de transferência é dada na forma da Equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na Figura \ref{fig:pendulo}:
+A fim de extrair a função de transferência do sensor, realiza-se um experimento com repetição onde, através de um voltímetro, mede-se a tensão elétrica sobre o resistor $R(\theta)$ em função do ângulo $\theta$. Com esse experimento, pode-se realizar um \textit{fit} cuja função foi utilizada como a função de transferência do sensor. Uma vez que o potenciô-\\metro é linear, espera-se que a função de transferência é dada na forma da Equação \ref{eq:pendulo-tf-forma} e conforme a estrutura apresentada na Figura \ref{fig:pendulo}:
 
 \begin{equation}
 	R(\theta) = R_0 + R_1 \times \theta
@@ -70,9 +70,9 @@ A fim de extrair a função de transferência do sensor, realiza-se um experimen
 \end{equation}
 
 \noindent
-onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistência elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa a sua posição de repouso.
+onde $R(\theta)$ é a resistência elétrica do pêndulo em $\Omega$(ohm, unidade de medida da resistên-\\cia elétrica) para um dado ângulo de inclinação, $R_0$ é a resistência do pêndulo em $\Omega$ no ângulo de zero graus em relação a origem(a linha tracejada), $R_1$ é a variação de resistência elétrica do pêndulo em $\Omega / rad$ em função da variação de ângulo e $\theta$ é a inclinação do pêndulo em $rad$(radiano) relativa a sua posição de repouso.
 
-Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805 da \textit{STMicroeletronics}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 da \textit{Korea Eletronics Corporation}, de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
+Para minimizar o efeito de \textit{ripple} de tensão elétrica da fonte de alimentação, foram utilizados dois reguladores de tensão elétrica, sendo um dele foi LM7805 da \textit{STMicroele-\\tronics}, regulador de $(5 \pm 0.2)V$\cite{datasheet-lm7805} e outro foi regulador LM7905 da \textit{Korea Eletronics Corporation}, de $(-5 \pm 0.2)V$\cite{datasheet-lm7905}. O mesmo conjunto de reguladores foi utilizado para alimentar todos componentes elétricos externos. De acordo com o fabricante, este regulador possui um tolerância de 0.2V(volt) com uma distribuição uniforme de probabilidade. A incerteza correspondente, $\delta_{regulador}$, pode ser obtida pela Equação \ref{eq:incerteza-regulador}:
 
 \begin{equation}
 	\delta_{regulador} = \frac{\Delta_{regulador}}{\sqrt{3}} \approx 0.12 V
@@ -111,7 +111,7 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 
 Para a etapa E1, utilizou-se um potenciômetro de $(4366 \pm 3.097) V$ com uma incerteza do tipo A, extraída com 10 medições utilizando um multímetro Politerm POL-41A.
 
-Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741}, da \textit{Texas Instruments}, configurado como um seguidor de tensão elétrica, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
+Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741}, da \textit{Texas Instru-\\ments}, configurado como um seguidor de tensão elétrica, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
 
 \begin{figure}[H]
 \centering
@@ -240,9 +240,9 @@ A função de transferência para o sensor já foi obtida no experimento anterio
 
 onde $\theta$ é a inclinação do pêndulo em radianos, $V^{-1}(\theta)$ é a inversa da função de transferência do pêndulo modelada anteriormente, $\theta_0$ é o \textit{offset} de ângulo correspondente ao \textit{offset} inicial de tensão elétrica e $\theta_1$ é a constante que define a variação de inclinação em função de uma variação de tensão elétrica do sensor.
 
-Para que seja possível comparar os resultados obtidos com e sem o circuito condicionador, é imprescindível que sejam extraídas as funções de transferências equivalentes do pêndulo nas duas situações.
+Para que seja possível comparar os resultados obtidos com e sem o circuito condiciona-\\dor, é imprescindível que sejam extraídas as funções de transferências equivalentes do pêndulo nas duas situações.
 
-Para extrair a função de transferência experimental do pêndulo sem condicionamento, foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na Tabela \ref{tab:precisão-multimetro}. A coluna da precisão é apresentada na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos. Foi utilizada a faixa de $20 V$.
+Para extrair a função de transferência experimental do pêndulo sem condicionamento, foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na Tabela \ref{tab:precisão-multimetro}. A coluna da precisão é apresenta-\\da na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos. Foi utilizada a faixa de $20 V$.
 
 \begin{table}[H]
 \centering
@@ -269,7 +269,7 @@ Com o pêndulo alimentado na mesma forma do experimento sem condicionamento, o d
 
 Conforme o experimento sem condicionamento, o experimento realizado foi fatorial completo com um fator controlável a 19 níveis (de -90 a +90 graus) com duas repetições por célula.
 
-Após a realização das medidas sem e com condicionamento, foi feito um ajuste de curvas no \textit{software} Wolfram Mathematica para obter a função de transferência experimental para cada um dos experimentos que deve ser dada na forma da Equação \ref{eq:pendulo-tf-forma-inversa}.
+Após a realização das medidas sem e com condicionamento, foi feito um ajuste de curvas no \textit{software} Wolfram Mathematica para obter a função de transferência experi-\\mental para cada um dos experimentos que deve ser dada na forma da Equação \ref{eq:pendulo-tf-forma-inversa}.
 
 Baseada  a Figura \ref{fig:pendulo} e  utilizando simples relações trigonométricas, pode-se calcular a amplitude $\theta_{0}$ pela Equações \ref{}:
 
@@ -635,9 +635,9 @@ De forma gráfica, os pontos medidos na Tabela \ref{tab:pendulo-calibracao-condi
 \label{fig:pendulo-tf-com-cond}
 \end{figure}
 
-Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observando a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}, contribuindo o erro na medição.  
+Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observan-\\do a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}, contribuindo o erro na medição.  
 
-Usando a Equação \ref{eq:pendulo-tf-com-cond}, calcula-se os valores de sensibilidade($S$), resolução de entrada($RE$), resolução de saída($RS$) e erro de linearidade($EL$).
+Usando a Equação \ref{eq:pendulo-tf-com-cond}, calcula-se os valores de sensibilidade($S$), resolução de entra-\\da($RE$), resolução de saída($RS$) e erro de linearidade($EL$).
 
 \begin{equation}
 	S = \dfrac{\partial V(\theta)}{\partial \theta} = 29mV/grau
@@ -739,7 +739,7 @@ Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito d
 \label{fig:pendulo-curva-angulo-vs-tempo}
 \end{figure}
 
-Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textit{Fast Fourier Transform} (FFT). Na Figura \ref{fig:pendulo-frequencia} está apresentado a magnitude do espetro do sinal obtido.
+Adicionalmente, é possível calcular as componentes de frequência do sinal utilizando o algoritmo de \textit{Fast Fourier Transform} (FFT). Na Figura \ref{fig:pendulo-frequencia} está apresentado a magnitu-\\de do espetro do sinal obtido.
 
 \begin{figure}[H]
 \centering
@@ -762,14 +762,14 @@ Na Figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a compone
 As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo.
 
 \subsection{Caracterização do Sistema}
-Conforme apresentado na Equação \ref{eq:pendulo-tf-sem-cond}, foi levantada a função de transferência experimental do ensaio do pêndulo sem condicionamento. Assim, é possível determinar a sensibilidade do sistema, que é a derivada da saída em relação à entrada, conforme a Equação \ref{eq:pendulo-sensibilidade}.
+Conforme apresentado na Equação \ref{eq:pendulo-tf-sem-cond}, foi levantada a função de transferência experi-\\mental do ensaio do pêndulo sem condicionamento. Assim, é possível determinar a sensibilidade do sistema, que é a derivada da saída em relação à entrada, conforme a Equação \ref{eq:pendulo-sensibilidade}.
 
 \begin{equation}
 	\frac{\partial V}{\partial \theta}=\frac{\partial}{\partial \theta}(0.028\theta-0.015)=0.028(V/º)
 	\label{eq:pendulo-sensibilidade}
 \end{equation}
 
-A resolução de entrada é a menor variação no sinal de entrada que resultará numa variação mensurável na saída.  Esta resolução, pelo experimento realizado, depende muito do equipamento utilizado para mensurar o valor de entrada. No caso do experimento realizado, foi adaptado um transferidor centrado no eixo do potenciômetro do pêndulo. Esse transferidor tinha uma resolução de 1º. Assim, com a movimentação do eixo do pêndulo para um dos lados, foi possível determinar, visualmente, um grau correspondente à inclinação. No experimento, as medidas foram feitas a cada 10º, em um \textit{range} de -90º a 90º. A cada variação de 10º na entrada, a saída do sistema varia, de acordo com a Equação \ref{eq:pendulo-tf-sem-cond}, $0.28V$.
+A resolução de entrada é a menor variação no sinal de entrada que resultará numa variação mensurável na saída.  Esta resolução, pelo experimento realizado, depende muito do equipamento utilizado para mensurar o valor de entrada. No caso do experi-\\mento realizado, foi adaptado um transferidor centrado no eixo do potenciômetro do pêndulo. Esse transferidor tinha uma resolução de 1º. Assim, com a movimentação do eixo do pêndulo para um dos lados, foi possível determinar, visualmente, um grau correspondente à inclinação. No experimento, as medidas foram feitas a cada 10º, em um \textit{range} de -90º a 90º. A cada variação de 10º na entrada, a saída do sistema varia, de acordo com a Equação \ref{eq:pendulo-tf-sem-cond}, $0.28V$.
 
 
 \subsection{Medição a 3 fios}
@@ -820,8 +820,6 @@ Conforme observa-se na Figura \ref{fig:wheatstone-wire-model}, para os mesmos va
 
 É possível observar claramente no resultado da simulação que o \textit{bias} produzido por esta construção ficou em $1.776 fV$, que dada a sensibilidade de um multímetro comercial de baixo custo, é imperceptível e a incerteza é no mínimo 1000 vezes superior (na ordem de mV).
 
-\todo{equacionar isso}
-
 \subsection{Medição a 4 fios}
 
 Embora o método a 3 fios melhore bastante a qualidade da medida, há um \textit{offset} dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de \textbf{método a 4 fios}. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e, através de lei de Ohm, pode-se extrair o valor de resistência elétrica do sensor. Na Figura \ref{fig:4wire-circuit} está apresentado o esquemático elético equivalente deste método,
@@ -844,28 +842,15 @@ Neste método, aplica-se diretamente a lei de Ohm conforme a Equação \ref{eq:o
 
 Independente da resistência elétrica dos fios, considerando que a impedância elétrica do voltímetro seja infinita ou muito grande, a queda de tensão elétrica provocada por $R_{f3}$ e $R_{f4}$ são negligenciáveis e a tensão medida sobre $R_s$ é a tensão real (respeitando a incerteza do instrumento). Para as resistências elétricas $R_{f1}$ e $R_{f2}$ a corrente elétrica que circula por elas é a mesma que circula por $R_s$, embora elas provoquem uma redução da corrente elétrica que circula pelo ramo, este é compensado na redução de tensão elétrica medida $V_s$. Logo, considerando-se somente o erro devido às conexões, o erro causado por esta construção é zero ou negligenciável.
 
-\todo{sensibilidade, resolução de entrada, resolução de saída, erro de linearidade ou de conformidade, incerteza, etc, assim como, a correspondente Cadeia de Medidas Proposta (teórica) e a Cadeia de Medidas Experimental}
-
-\todo{determinar a sensibilidade, a resolução de entrada, resolução de saída, o erro de linearidade (ou erro de conformidade se for o caso) de seu sistema}
-
-\todo{com os sinais armazenados pelo programa LabVIEW elaborar um procedimento para determinar o decaimento em função do tempo e discutir esse resultado.}
-
-\todo{modelo de thevenin}
-\todo{grafico saida do pot vs angulo. qual erro?}
-\todo{sensibilidade do circuito anterior}
-
-\todo{discutir quantidade de amostras (medidas obtidas) para cada ângulo versus tensão.}
-
 \section{Sensor de Efeito Hall Linear}
-Baseada a metodologia mencionada na seção 2.2.1, conecta-se os fios do sensor de efeito Hall com a placa DAQ. Foi verificado que quando aproxima-se um ímã ao sensor, o \textit{LED} virtual que está no painel frontal do LabVIEW acendia. Aproximando e afastando o ímã com o sensor de efeito Hall, foi verificado outro funcionamento interessante: o amplitude da tensão elétrica varia com a frequência de aproximação e afastamento do ímã, ou seja, quando maior for a rapidez essa diferença, a variação da amplitude
-da tensão elétrica é maior. Note-se também que, se variasse com uma frequência determinada, obtêm-se um sinal do tipo onda quadrada no gráfico da amplitude de tensão elétrica em função de tempo.
+Baseada a metodologia mencionada na seção 2.2.1, conecta-se os fios do sensor de efeito Hall com a placa DAQ. Foi verificado que quando aproxima-se um ímã ao sensor, o \textit{LED} virtual que está no painel frontal do LabVIEW acendia. Aproximando e afastando o ímã com o sensor de efeito Hall, foi verificado outro funcionamento interessante: o amplitude da tensão elétrica varia com a frequência de aproximação e afastamento do ímã, ou seja, quando maior for a rapidez essa diferença, a variação da amplitude da tensão elétrica é maior. Note-se também que, se variasse com uma frequência determinada, obtêm-se um sinal do tipo onda quadrada no gráfico da ampli-\\tude de tensão elétrica em função de tempo.
 
 \section{Módulo Sensor LED}
 Baseada na metodologia mencionada na seção 2.2.2, foi feita a conexão dos fios  entre o sensor \textit{LED} e a placa DAQ. Testou-se, acionando os botões que estão no painel do diagrama mostrado na Figura \ref{fig:labview-led}. Dessa forma, foi verificado que o \textit{LED} vermelho acendia, como estava esperado. Porém o \textit{LED} amarelo não acionou, mesmo com botão do programa de LabVIEW ligado. Depois de algumas verificações do sensor, conclui-se que o \textit{LED} amarelo do sensor estava queimado devido ao uso indevido antes deste experimento, já que as tensões elétricas nos pinos da DAQ estavam correspondendo corretamente aos comandos dados na interface do LabVIEW.
 
 \chapter{Conclusões}
 
-Após de realizar este experimento, pode-se concluir que o uso do sensor potenciométrico pode ser utilizado em diversas aplicações, tais como medição do movimento dos braços mecânicos, balança, etc. Uma vez que a resistência elétrica do potenciômetro possui característica linear. Além disso, os sensores de efeito Hall e LED possuem também muitas aplicações nos dia a dia, pois são sensores que apresentam precisões nas medidas, principalmente a resposta rápida destes sensores.
+Após de realizar este experimento, pode-se concluir que o uso do sensor potenciomé-\\trico pode ser utilizado em diversas aplicações, tais como medição do movimento dos braços mecânicos, e outras aplicações cujo posicionamento de uma peça precise ser medida como, por exemplo, um pêndulo, uma vez que a resistência elétrica do potenciômetro possui característica linear. Além disso, o sensor de efeito Hall possui também muitas aplicações nos dia a dia, pois é um sensor que possui resposta rápida que, frequentemente, utilizados para detectar o movimento de um corpo, velocidade de rotação, corrente elétrica de forma não intrusiva entre outros. Também verificou-se a facilidade de desenvolver interfaces de usuário com qualidade utilizando o LabVIEW, como foi possível observar na atividade de acionamento do LED.
 
 \iftoggle{attachments}{
 	\chapter*{Anexos}
