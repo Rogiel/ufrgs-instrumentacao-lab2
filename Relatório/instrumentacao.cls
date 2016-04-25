@@ -171,15 +171,19 @@
 
 \hrule \vspace{1em}
 
+\end{flushleft}
+
 \begin{adjustwidth}{1cm}{}
-\textbf{Resumo}: \noindent \theresume
+\noindent
+\textbf{Resumo}: \theresume
 \vspace{1.5em}
-\textbf{Abstract}: \noindent \theabstract
+
+\noindent\textbf{Abstract}: \theabstract
 \vspace{1.5em}
-\textbf{Palavras Chaves}: \thekeywords
+
+\noindent\textbf{Palavras Chaves}: \thekeywords
 
 \vspace{1em} \hrule
 \end{adjustwidth}
-\end{flushleft}
 \end{titlepage}
 }
