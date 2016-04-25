@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      2105,         73]
-NotebookOptionsPosition[      1779,         56]
-NotebookOutlinePosition[      2138,         72]
-CellTagsIndexPosition[      2095,         69]
+NotebookDataLength[      2559,         86]
+NotebookOptionsPosition[      2178,         67]
+NotebookOutlinePosition[      2591,         85]
+CellTagsIndexPosition[      2548,         82]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -37,25 +37,38 @@ Cell[BoxData[{
      RowBox[{"4.38", "*", "1000"}], ",", 
      RowBox[{"4.37", "*", "1000"}], ",", 
      RowBox[{"4.36", "*", "1000"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"PlusMinus", "[", 
-  RowBox[{
-   RowBox[{"Mean", "[", "data", "]"}], ",", 
+ RowBox[{
+  RowBox[{"PlusMinus", "[", 
    RowBox[{
-    RowBox[{"StandardDeviation", "[", "data", "]"}], "/", 
-    RowBox[{"Sqrt", "[", 
-     RowBox[{"Length", "[", "data", "]"}], "]"}]}]}], "]"}]}], "Input",
+    RowBox[{"Mean", "[", "data", "]"}], ",", 
+    RowBox[{
+     RowBox[{"StandardDeviation", "[", "data", "]"}], "/", 
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"Length", "[", "data", "]"}], "]"}]}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NotebookFileName", "[", 
+      RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], "<>", "\"\<.pdf\>\""}],
+     ",", " ", 
+    RowBox[{"EvaluationNotebook", "[", "]"}]}], "]"}], ";"}]}], "Input",
  CellChangeTimes->{{3.670321990313883*^9, 3.670322053178838*^9}, {
-  3.6703233619283667`*^9, 3.6703233683180723`*^9}}],
+  3.6703233619283667`*^9, 3.6703233683180723`*^9}, {3.6705809466214113`*^9, 
+  3.670580946931958*^9}}],
 
 Cell[BoxData[
  RowBox[{"4366.666666666667`", "\[PlusMinus]", 
   "3.097734590948617`"}]], "Output",
  CellChangeTimes->{{3.670322041602511*^9, 3.670322053524337*^9}, 
-   3.670323368695016*^9}]
+   3.670323368695016*^9, 3.670580948096456*^9}]
 }, Open  ]]
 },
 WindowSize->{808, 690},
 WindowMargins->{{278, Automatic}, {46, Automatic}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
 FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 25, \
 2016)",
 StyleDefinitions->"Default.nb"
@@ -72,12 +85,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 990, 25, 63, "Input"],
-Cell[1573, 49, 190, 4, 28, "Output"]
+Cell[580, 22, 1367, 36, 97, "Input"],
+Cell[1950, 60, 212, 4, 28, "Output"]
 }, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
