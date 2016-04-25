@@ -537,6 +537,18 @@ O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equaç�
 
 De forma gráfica, os pontos medidos apresentados na Tabela \ref{tab:pendulo-calibracao} e a função de transferência da Equação \ref{eq:pendulo-tf-sem-cond} ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-sem-cond}. Note-se que as medidas de tensâo elétrica em função do ângiulo da inclinação do pêndulo possui uma relação linear. Tal relação cabe-se concluir que o uso do sensor potenciométrico pode medir o ângulo da inclinção do pêendulo com precisão.
 
+Usando a Equação ref{eq:pendulo-tf-sem-cond-inv}, calcula-se os valores de sensibilidade($S$), resolução de entrada($RE$), resolução de saída($RS$) e erro de linearidade($EL$).
+
+\begin{equation}
+	S = dfrac{\partial V(\theta)}{\partial \theta} = 0.028
+	\label{eq:sensibilidade-sem-cond}
+\end{equation}
+
+\begin{equation}
+	RE = dfrac{\partial V(\theta)}{\partial \theta} = 0.028
+	\label{eq:resolucao-sem-cond}
+\end{equation}
+
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{Pendulo-fit.pdf}
@@ -804,8 +816,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 
 \todo{determinar a sensibilidade, a resolução de entrada, resolução de saída, o erro de linearidade (ou erro de conformidade se for o caso) de seu sistema}
 
-\todo{Tarefa para Casa: de posse da função de medição de seu sistema determinar a incerteza combinada deste sistema.}
-
 \todo{com os sinais armazenados pelo programa LabVIEW elaborar um procedimento para determinar o decaimento em função do tempo e discutir esse resultado.}
 
 \todo{modelo de thevenin}
@@ -813,7 +823,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{sensibilidade do circuito anterior}
 
 \todo{discutir quantidade de amostras (medidas obtidas) para cada ângulo versus tensão.}
-\todo{calcular a incerteza de TODAS medidas}
 
 \section{Sensor de Efeito Hall Linear}
 Baseada a metodologia mencionada na seção 2.2.1, conecta-se os fios do sensor de efeito Hall com a placa DAQ. Foi verificado que quando aproxima-se um ímã ao sensor, o \textit{LED} virtual que está no painel frontal do LabVIEW acendia. Aproximando e afastando o ímã com o sensor de efeito Hall, foi verificado outro funcionamento interessante: o amplitude da tensão elétrica varia com a frequência de aproximação e afastamento do ímã, ou seja, quando maior for a rapidez essa diferença, a variação da amplitude
