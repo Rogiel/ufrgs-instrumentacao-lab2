@@ -31,7 +31,6 @@
 \begin{document}
 \maketitle
 
-\todo{arrumar datas}
 
 \chapter{Introdução}
 Nesta atividade de laboratório, tem-se objetivo de explorar e entender o funcionamento dos efeitos físicos de dois tipos de sensores. Um sensor potenciométrico e outro de efeito Hall linear.
@@ -105,9 +104,7 @@ A cadeia de medidas deste experimento pode ser representada pelo diagrama de blo
 \label{fig:pendulo-cadeia-medidas}
 \end{figure}
 
-Para a etapa E1, utilizou-se um 
-
-de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
+Para a etapa E1, utilizou-se um potenciômetro (resistor ajustável)de \todo{qual a resistência dele?} com uma incerteza informada pelo fabricante de 100 $\Omega$ \todo{chute}.
 
 Para a etapa E2, utilizou-se um amplificador operacional LM741\cite{datasheet-lm741} configurado como um seguidor de tensão elétrica, \textit{buffer}, conforme o esquemático elétrico apresentado na Figura \ref{fig:buffer-tensão}:
 
@@ -299,15 +296,54 @@ Para a realização do experimento, foram utilizados os seguintes materiais e in
 	\item 01 ímã;
 	\item 01 multímetro digital Minipa ET-2028B;
 	\item 01 fonte de alimentação Politerm POL-16E;
-	\item 01 placa de Aquisição de Dados NI  USB-6009;
+	\item 01 placa de Aquisição de Dados (DAQ) NI  USB-6009;
 	\item 01 filtro \textit{anti-aliasing} (100 $Hz$ - 4ª ordem);
 	\item 01 regulador de tensão elétrica com CI LM7805;
-	\item fios para fazer as ligações. 
+	\item protoboard e fios para fazer as ligações. 
 \end{itemize}
 
 O módulo sensor foi alimentado com 5V fornecidos pelo regulador de tensão elétrica e o GND, \textit{ground}, da fonte, conforme indicação na placa da Figura \ref{fig:efeito-hall}, com "-" e "+", indicando, respectivamente, o GND e os 5V. O pino de sinal foi conectado a uma porta de entrada analógica da placa DAQ.
 
-No LabVIEW foi montada uma interface representada por um \textit{LED}, e também por um gráfico (???),\todo{existe a tela que utilizamos?} conforme a Figura XX.
+No LabVIEW foi montada uma interface representada por um \textit{LED}, e também por um gráfico amostrando o valor da tensão observada pela placa DAQ, conforme a Figura \ref{fig:labview-hall}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Imagens/labview_hall.jpg}
+\caption{Interface montada no LabVIEW para observação do funcionamento do Sensor de Efeito Hall}
+\label{fig:labview-hall}
+\end{figure}
+
+\subsection{Módulo Sensor LED}
+Neste experimento foi feita a interface com um módulo sensor \textit{LED}, apresentado na Figura \ref{fig:modulo-led}, com a Placa DAQ disponibilizada em laboratório.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{Imagens/Modulo_LED.jpg}
+\caption{Foto do módulo sensor LED}
+\label{fig:modulo-led}
+\end{figure}
+
+Para a realização do experimento, foram utilizados os seguintes materiais e instrumentos:
+
+\begin{itemize}
+	\item Ferramenta computacional LabVIEW;
+	\item 01 módulo sensor LED;
+	\item 01 multímetro digital Minipa ET-2028B;
+	\item 01 fonte de alimentação Politerm POL-16E;
+	\item 01 placa de Aquisição de Dados (DAQ) NI  USB-6009;
+	\item protoboard e fios para fazer as ligações. 
+\end{itemize}
+
+O módulo sensor LED foi interfaceado com a placa DAQ, ligando os pinos AMARELO e VERMELHO (conforme Figura \ref{fig:modulo-led} a duas portas digitais da DAQ e o pino GND à porta GND da placa de aquisição de dados.
+
+No Labview foi implementada uma interface com dois botões, sendo um para acionar o LED vermelho e outro para acionar o LED amarelo, conforme a Figura \ref{fig:labview-led}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Imagens/labview_led.jpg}
+\caption{Interface montada no LabVIEW para observação do funcionamento do Módulo Sensor LED}
+\label{fig:labview-led}
+\end{figure}
 
 \chapter{Resultados e Discussões}
 \section{Pêndulo}
