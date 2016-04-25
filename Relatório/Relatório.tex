@@ -229,6 +229,7 @@ Logo, através da análise anterior, pode-se concluir que, mesmo no pior caso de
 Para o processo de amostragem E4, o DAQ USB-6009 da \textit{National Instruments} foi utilizado para levantar os dados experimentais. A entrada lógica deste dispositivo possui 14 \textit{bits} e uma taxa de amostragem de 48 $kS/s$ e possui uma resolução de tensão elétrica na entrada analógica de $1.53 mV$.
 
 \subsection{Levantamento da função de transferência do pêndulo}
+\label{sec:tf-pedulo}
 
 Para poder estimar o valor do ângulo de inclinação do pêndulo, em função da tensão elétrica medida pelo fluxo de medida, que foi mostrado na Figura \ref{fig:pendulo-fluxo-medidas}, e, utilizando as funções de transferência definidas para cada um dos blocos, pode-se realizar a extração da função de transferência experimental do pêndulo.
 
@@ -279,7 +280,7 @@ Baseada  a Figura \ref{fig:pendulo} e  utilizando simples relações trigonomét
 	\theta_{0} = arccos(x)
 	\label{eq:pendulo-angulo0}
 \end{equation}
-\noindent onde $x = \dfrac{h-d}{L}$, sendo $h$ e $d$ são distâncias entre a base do pêndulo até o eixo e até o centro de massa respectivamente.
+\noindent onde $x = \dfrac{h-d}{L}$, sendo $h$ e $d$ são distâncias entre a base do pêndulo até o eixo e até o centro de massa respectivamente. $L$ é o comprimento do pêndulo.
 
 A incerteza na medida do amplitude pode ser calculada com a Equação \ref{eq:pendulo-incerteza}
 \begin{equation}
@@ -429,6 +430,7 @@ O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equaç�
 	\label{eq:pendulo-sem-cond-rsquared}
 \end{equation}
 %
+
 De forma gráfica, os pontos medidos apresentados na Tabela \ref{tab:pendulo-calibracao} e a função de transferência da Equação \ref{eq:pendulo-tf-sem-cond} ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-sem-cond}. Note-se que as medidas de tensâo elétrica em função do ângiulo da inclinação do pêndulo possui uma relação linear. Tal relação cabe-se concluir que o uso do sensor potenciométrico pode medir o ângulo da inclinção do pêendulo com precisão.
 
 \begin{figure}[]
@@ -507,6 +509,30 @@ De forma gráfica, os pontos medidos na Tabela \ref{tab:pendulo-calibracao-condi
 \end{figure}
 
 Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observando a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}, contribuindo o erro na medição.  
+
+Baseada a Figura \ref{fig:pendulo}, foram medidos valores de $h$, $d$ e $L$ para cálculo da incerteza na medida de amplitude $\delta\theta_{0}$ mencionada na Seção \ref{sec:tf-pedulo}. As medidas destes valores estão apresentadas na Tabela \ref{tab:pendulo-dimensionamento}. Para ângulo de 50 graus, a incerteza de amplitude é calculada pela Equação \ref{eq:pendulo-incerteza-calculada}.
+
+\begin{equation}
+	\delta\theta_{0}= \sqrt{(\dfrac{\delta\theta_{0}}{\delta h})^2 \times (\delta h)^2 + (\dfrac{\delta\theta_{0}}{\delta d})^2 \times (\delta d)^2 + (\dfrac{\delta\theta_{0}}{\delta L})^2 \times (\delta L)^2} = 0.009
+	\label{eq:pendulo-incerteza-calculada}
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Medidas da dimensão do pêndulo}
+\begin{tabular}{|l|l|l|}
+ \hline
+ \textbf{$h$($cm$)} & \textbf{$d$($cm$)} & \textbf{$L$($cm$)} \\ \hline
+
+36.7 & 16.3 & 27.5 \\ \hline
+36.9 & 16.5 & 27.5 \\ \hline
+36.9 & 16.3 & 27.4 \\ \hline
+36.9 & 16.4 & 27.4 \\ \hline
+
+\end{tabular}
+\label{tab:pendulo-dimensionamento}
+\end{table}
+
 
 \subsection{Curva temporal do pêndulo}
 
@@ -645,9 +671,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \todo{sensibilidade, resolução de entrada, resolução de saída, erro de linearidade ou de conformidade, incerteza, etc, assim como, a correspondente Cadeia de Medidas Proposta (teórica) e a Cadeia de Medidas Experimental}
-
-\todo{LabVIEW+matlab}
-\todo{só matlab}
 
 \todo{determinar a sensibilidade, a resolução de entrada, resolução de saída, o erro de linearidade (ou erro de conformidade se for o caso) de seu sistema}
 
