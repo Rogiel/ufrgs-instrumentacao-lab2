@@ -551,6 +551,17 @@ Na Figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a compone
 
 As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo.
 
+\subsection{Caracterização do Sistema}
+Conforme apresentado na Equação \ref{eq:pendulo-tf-sem-cond}, foi levantada a função de transferência experimental do ensaio do pêndulo sem condicionamento. Assim, é possível determinar a sensibilidade do sistema, que é a derivada da saída em relação à entrada, conforme a Equação \ref{eq:pendulo-sensibilidade}.
+
+\begin{equation}
+	\frac{\partial V}{\partial \theta}=\frac{\partial}{\partial \theta}(0.028\theta-0.015)=0.028(V/º)
+	\label{eq:pendulo-sensibilidade}
+\end{equation}
+
+A resolução de entrada é a menor variação no sinal de entrada que resultará numa variação mensurável na saída.  Esta resolução, pelo experimento realizado, depende muito do equipamento utilizado para mensurar o valor de entrada.
+
+
 \subsection{Medição a 3 fios}
 
 Considerando a ponte de \textit{Wheatstone} da Figura \ref{fig:3fios-wheatstone}
