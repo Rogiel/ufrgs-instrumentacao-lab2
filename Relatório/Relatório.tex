@@ -2,6 +2,7 @@
 
 \usepackage{listings}
 \usepackage{etoolbox}
+\usepackage{graphicx}
 
 \newtoggle{attachments}
 \togglefalse{attachments}
@@ -340,7 +341,7 @@ Para a realização do experimento, foram utilizados os seguintes materiais e in
 
 O módulo sensor LED foi interfaceado com a placa DAQ, ligando os pinos AMARELO e VERMELHO (conforme Figura \ref{fig:modulo-led} a duas portas digitais da DAQ e o pino GND à porta GND da placa de aquisição de dados.
 
-No Labview foi implementada uma interface com dois botões, sendo um para acionar o LED vermelho e outro para acionar o LED amarelo, conforme a Figura \ref{fig:labview-led}.
+No LabVIEW foi implementada uma interface com dois botões, sendo um para acionar o LED vermelho e outro para acionar o LED amarelo, conforme a Figura \ref{fig:labview-led}.
 
 \begin{figure}[H]
 \centering
@@ -652,10 +653,10 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{calcular a incerteza de TODAS medidas}
 
 \section{Sensor de Efeito Hall Linear}
-\todo{experimento do efeito hall}
+
 
 \section{Módulo Sensor LED}
-\todo{experimento do led}
+Feita a conexão dos fios  entre o sensor com a placa de aquisição DAQ, foi testado acionando os botôes que estão no painel frontal do diagrama mostrado na Figura \ref{fig:labview-led}. Foi verifado que o \textit{LED} vermelho acendia como estava esperado. Porém o \textit{LED} amarelo não acionou mesmo com botão do programa de LabVIEW ligado. Depois de algumas verificações, conclui-se que o \textit{LED} amarelo do sensor estava queimado devido ao uso indevido antes deste experimento.
 
 
 
