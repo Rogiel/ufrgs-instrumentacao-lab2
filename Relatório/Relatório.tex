@@ -24,7 +24,7 @@
 }
 \resume{Exploração de um sensor potenciométrico utilizado para estimar a curva de posição em função do tempo de um pêndulo, exploração da medida de campo magnético através de um sensor eletrônico de efeito Hall e experimentação do acionamento de um conjunto de 2 \textit{LEDs} utilizando o software LabVIEW.}
 \abstract{Exploration of a potentiometric sensor used to estimate the time curve of a pendulum, measurement of a magnetic field using a Hall sensor and experimentation of a trigger system for a group of 2 LEDs using LabVIEW software.}
-\keywords{pêndulo; sensor potenciométrico; efeito Hall; LabVIEW.}
+\keywords{pêndulo; sensor potenciométrico; sensor de efeito Hall; LabVIEW.}
 \institute{Universidade Federal do Rio Grande do Sul, Departamento de Engenharia Elétrica, Curso de Engenharia Elétrica, Instrumentação A, Profs. Dr. Alexandre Balbinot e Dra. Léia Bagesteiro}
 
 \headertext{Efeitos físicos}
@@ -366,7 +366,7 @@ A função de transferência que melhor se ajusta aos dados experimentais da Tab
 \end{equation}
 
 \noindent 
-ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-sem-cond-inv}
+ou em sua forma inversa, dada pela Equação \ref{eq:pendulo-tf-sem-cond-inv}
 
 \begin{equation}
 	\theta(V) = 0.53 + 36 V
@@ -374,7 +374,7 @@ ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-sem-cond-inv}
 \end{equation}
 
 \noindent
-onde $\theta$ é o angulo de inclinação do pêndulo e $V$ é a tensão elétrica medida sobre os terminais do pêndulo.
+onde $\theta$ é o ângulo de inclinação do pêndulo e $V$ é a tensão elétrica medida sobre os terminais do pêndulo.
 
 \begin{table}[]
 \centering
@@ -414,7 +414,7 @@ O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equaç�
 	\label{eq:pendulo-sem-cond-rsquared}
 \end{equation}
 
-De forma gráfica, os pontos medidos apresentados na Tabela \ref{tab:pendulo-calibracao}) e a função de transferência (Equação \ref{eq:pendulo-tf-sem-cond}) ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-sem-cond}
+De forma gráfica, os pontos medidos apresentados na Tabela \ref{tab:pendulo-calibracao} e a função de transferência da Equação \ref{eq:pendulo-tf-sem-cond} ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-sem-cond}
 
 \begin{figure}[]
 \centering
@@ -458,7 +458,7 @@ Na Tabela \ref{tab:pendulo-calibracao-condicionado}, estão apresentados os dado
 \label{tab:pendulo-calibracao-condicionado}
 \end{table}
 
-A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao-condicionado} é dada pela equação \ref{eq:pendulo-tf-com-cond}:
+A função de transferência que melhor se ajusta aos dados experimentais da Tabela \ref{tab:pendulo-calibracao-condicionado} é dada pela Equação \ref{eq:pendulo-tf-com-cond}:
 
 \begin{equation}
 	V(\theta) = 0.029 \theta + 0.125
@@ -466,7 +466,7 @@ A função de transferência que melhor se ajusta aos dados experimentais da Tab
 \end{equation}
 
 \noindent 
-ou em sua forma inversa, dada pela equação \ref{eq:pendulo-tf-com-cond-inv}:
+ou em sua forma inversa, dada pela Equação \ref{eq:pendulo-tf-com-cond-inv}:
 
 \begin{equation}
 	\theta(V) = -4.3 + 34. V
@@ -480,18 +480,18 @@ O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equaç�
 	\label{eq:pendulo-com-cond-rsquared}
 \end{equation}
 
-De forma gráfica, os pontos medidos (Tabela \ref{tab:pendulo-calibracao-condicionado}) e a função de transferência (Equação \ref{eq:pendulo-tf-com-cond}) ajustada pode ser visualizada na figura \ref{fig:pendulo-tf-com-cond}.
+De forma gráfica, os pontos medidos na Tabela \ref{tab:pendulo-calibracao-condicionado} e a função de transferência da Equação \ref{eq:pendulo-tf-com-cond} ajustada pode ser visualizada na Figura \ref{fig:pendulo-tf-com-cond}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{Pendulo-Condicionado-fit.pdf}
-\caption{Gráfico exibindo a função de transferência ajustada sobreposta às medidas experimentais}
+\caption{Gráfico exibindo a função de transferência ajustada(linha contínua) sobreposta às medidas experimentais(pontos)}
 \label{fig:pendulo-tf-com-cond}
 \end{figure}
 
 \subsection{Curva temporal do pêndulo}
 
-A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvolvido uma aplicação no LabVIEW que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na figura \ref{fig:pendulo-LabVIEW} está mostrado uma imagem do programa utilizado.
+A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvolvido uma aplicação no LabVIEW que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na Figura \ref{fig:pendulo-LabVIEW} está mostrado uma imagem do programa utilizado.
 
 \begin{figure}[H]
 \centering
@@ -500,9 +500,9 @@ A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvol
 \label{fig:pendulo-LabVIEW}
 \end{figure}
 
-Após realizar a exportação dos dados foi utilizado o software MATLAB para importar estes dados em formato TSV (tab-separated values) e realizar o processamento. Primei- ramente, é importante notar que a informação importada está em valores de tensão elétrica (Volt) e tempo (segundo). Num primeiro passe, deseja-se filtrar o valor de forma a remover qualquer ruído gerado pelo conversor analógico-digital da placa de aquisição de dados e, após a filtragem, converter estes valores de tensão elétrica em uma posição angular utilizando a função de transferência inversa com condicionamento dada pela Equação \ref{eq:pendulo-tf-com-cond-inv}.
+Após realizar a exportação dos dados foi utilizado o software MATLAB para importar estes dados em formato TSV (\textit{tab-separated values}) e realizar o processamento. Primei- ramente, é importante notar que a informação importada está em valores de tensão elétrica (volt) e tempo (segundo). Num primeiro passe, deseja-se filtrar o valor de forma a remover qualquer ruído gerado pelo conversor analógico-digital da placa de aquisição de dados e, após a filtragem, converter estes valores de tensão elétrica em uma posição angular utilizando a função de transferência inversa com condicionamento dada pela Equação \ref{eq:pendulo-tf-com-cond-inv}.
 
-A figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma bruta extraída diretamente do LabVIEW:
+A Figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma bruta extraída diretamente do LabVIEW:
 
 \begin{figure}[H]
 \centering
@@ -511,7 +511,7 @@ A figura \ref{fig:pendulo-curva-tensao-vs-tempo} apresenta a curva em forma brut
 \label{fig:pendulo-curva-tensao-vs-tempo}
 \end{figure}
 
-Na curva \ref{fig:pendulo-curva-tensao-vs-tempo}, é possível observar que há um alto nível de ruído em alta frequência, isto é, frequências onde a frequência do ruído são de ordens muito superiores à frequência do sinal desejado. Dessa forma, um filtro passa baixas de Butterworth foi desenvolvido com frequência de corte em 20 $Hz$, que torna possível a extração da curva filtrada apresentada na figura \ref{fig:pendulo-curva-tensao-vs-tempo-filtrado}.
+Na Figura \ref{fig:pendulo-curva-tensao-vs-tempo}, é possível observar que há um alto nível de ruído em alta frequência, isto é, frequências onde a frequência do ruído são de ordens muito superiores à frequência do sinal desejado. Dessa forma, um filtro passa baixas de \textit{Butterworth} foi desenvolvido com frequência de corte em 20 $Hz$, que torna possível a extração da curva filtrada apresentada na Figura \ref{fig:pendulo-curva-tensao-vs-tempo-filtrado}.
 
 \begin{figure}[H]
 \centering
@@ -520,7 +520,7 @@ Na curva \ref{fig:pendulo-curva-tensao-vs-tempo}, é possível observar que há 
 \label{fig:pendulo-curva-tensao-vs-tempo-filtrado}
 \end{figure}
 
-Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito de condicionamento, é dado pela equação \ref{eq:pendulo-tf-com-cond-inv}, é possível aplicar esta equação a cada um dos valores de tensão elétrica amostrados e converter esta curva em uma curva de posição angular em função do tempo. O resultado desta transformação está na figura \ref{fig:pendulo-curva-angulo-vs-tempo}. 
+Uma vez que o ângulo de oscilação do pêndulo, quando conectado ao circuito de condicionamento, é dado pela Equação \ref{eq:pendulo-tf-com-cond-inv}, é possível aplicar esta equação a cada um dos valores de tensão elétrica amostrados e converter esta curva em uma curva de posição angular em função do tempo. O resultado desta transformação está na Figura \ref{fig:pendulo-curva-angulo-vs-tempo}. 
 
 \begin{figure}[H]
 \centering
@@ -538,7 +538,7 @@ Adicionalmente, é possível calcular as componentes de frequência do sinal uti
 \label{fig:pendulo-frequencia}
 \end{figure}
 
-Para melhor visualizar o espectro, pode-se truncar o gráfico da imagem \ref{fig:pendulo-frequencia} em 1.5 $Hz$ para melhor visualizar a curva em baixa frequência, conforme figura \ref{fig:pendulo-frequencia-truncado}.
+Para melhor visualizar o espectro, pode-se truncar o gráfico da Figura \ref{fig:pendulo-frequencia} em 1.5 $Hz$ para melhor visualizar a curva em baixa frequência, conforme Figura \ref{fig:pendulo-frequencia-truncado}.
 
 \begin{figure}[H]
 \centering
@@ -547,13 +547,13 @@ Para melhor visualizar o espectro, pode-se truncar o gráfico da imagem \ref{fig
 \label{fig:pendulo-frequencia-truncado}
 \end{figure}
 
-Na figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a componente espectral de $0.9$ $Hz$ no pêndulo. Esta componente também é claramente visível na curva temporal da figura \ref{fig:pendulo-curva-tensao-vs-tempo} onde o período da oscilação é de $1.1$ segundos, que correspondem ao valor de $0.9$ $Hz$.
+Na Figura \ref{fig:pendulo-frequencia-truncado}, é possível observar a componente espectral de $0.9$ $Hz$ no pêndulo. Esta componente também é claramente visível na curva temporal da Figura \ref{fig:pendulo-curva-tensao-vs-tempo} onde o período da oscilação é de $1.1$ segundos, que correspondem ao valor de $0.9$ $Hz$.
 
 As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo efeito de amortecimento do pêndulo, 
 
 \subsection{Medição a 3 fios}
 
-Considerando a ponte de \textit{Wheatstone} da figura \ref{fig:3fios-wheatstone}
+Considerando a ponte de \textit{Wheatstone} da Figura \ref{fig:3fios-wheatstone}
 
 \begin{figure}[H]
 \centering
@@ -562,20 +562,20 @@ Considerando a ponte de \textit{Wheatstone} da figura \ref{fig:3fios-wheatstone}
 \label{fig:3fios-wheatstone}
 \end{figure}
 
-\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e $V_o$ é a tensão elétrica de saída da ponte. É fácil provar que a equação correspondente ao circuito é dado pela equação \ref{eq:wheatstone-vo}:
+\noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência elétrica máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e $V_o$ é a tensão elétrica de saída da ponte. É fácil provar que a equação correspondente ao circuito é dado pela Equação \ref{eq:wheatstone-vo}:
 
 \begin{equation}
 	V_o = \left({{R_2}\over{R_1 + R_2}} - {{R_x}\over{R_x + R_3}}\right)V_{cc}
 	\label{eq:wheatstone-vo}
 \end{equation}
 
-A ponte de Wheatstone pode ser vista como um circuito capaz de medir e aumentar pequenas diferenças de resistência elétrica de um sensor arbitrário em uma saída de tensão, com sensibilidade maior que a sensibilidade do sensor. Isto é, para uma pequena variação, é possível obter (com uma ponte devidamente projetada) uma saída em tensão elétrica com maior sensibilidade, quando comparada ao sensor isolado.
+A ponte de Wheatstone pode ser vista como um circuito capaz de medir e aumentar pequenas diferenças de resistência elétrica de um sensor arbitrário em uma saída de tensão elétrica, com sensibilidade maior que a sensibilidade do sensor. Isto é, para uma pequena variação, é possível obter (com uma ponte devidamente projetada) uma saída em tensão elétrica com maior sensibilidade, quando comparada ao sensor isolado.
 
 Embora esta característica seja ideal para utilizar em sensores cuja amplitude de variação de resistência elétrica seja muito pequena, isto também significa que não é possível desprezar as resistências elétricas intrínsecas dos fios de conexão do sensor com a ponte. Como a ponte de Wheatstone pode ser utilizada como um condicionador para pequenas variações de resistência elétrica, uma pequena inserção de resistência elétrica do fio pode causar um \textit{bias} significante na saída da ponte.
 
 Com a finalidade de compensar esta não idealidade, é possível realizar medidas utilizando técnicas denominadas de \textbf{medida a 3 fios} e \textbf{medida a 4 fios}.
 
-Nestas técnicas, um fio com as mesmas especificações de comprimento, seção reta e material é utilizado com a finalidade de tentar obter uma resistência elétrica semelhante ao fio de conexão do sensor e minimizar a significância do fio na medida. Este método pode ser expresso pelo seguinte circuito elétrico equivalente da figura \ref{fig:wheatstone-wire-model}:
+Nestas técnicas, um fio com as mesmas especificações de comprimento, seção reta e material é utilizado com a finalidade de tentar obter uma resistência elétrica semelhante ao fio de conexão do sensor e minimizar a significância do fio na medida. Este método pode ser expresso pelo seguinte circuito elétrico equivalente da Figura \ref{fig:wheatstone-wire-model}:
 
 \begin{figure}[H]
 \centering
@@ -586,7 +586,7 @@ Nestas técnicas, um fio com as mesmas especificações de comprimento, seção 
 
 \noindent onde os resistores $R_1$, $R_2$ e $R_3$ são resistores fixos e definidos em função do valor de resistência máxima do sensor, $R_s$ é a resistência elétrica do sensor, variável em função da grandeza a ser medida, $V_{cc}$ é a tensão elétrica de alimentação da fonte e o resistores $R_{fi}$ são resistências intrínsecas dos fios e espera-se que para fios de mesmo material, comprimento e seção reta, seus valores sejam semelhantes.
 
-Conforme observa-se na figura \ref{fig:wheatstone-wire-model}, para os mesmos valores de $R_1$, $R_2$, $R_3$ e $R_f$ o valor de tensão elétrica de saída da ponte é diferente de zero. Isto é causado devido ao desbalanceamento da ponte causado pela resistência elétrica dos fios de conexão do sensor, representados por $R_{f1}$ e $R_{f2}$. Caso o sensor tenha uma variação pequena de resistência elétrica, o \textit{bias} causado pelas resistências série pode ser muito significante e gerar erros. Para reduzir o impacto dessa resistência série, pode-se utilizar o método de medida a 3 fios, onde um terceiro fio é conectado diretamente entre o sensor e um dos terminais do voltímetro, conforme figura \ref{fig:wheatstone-3wire}.
+Conforme observa-se na Figura \ref{fig:wheatstone-wire-model}, para os mesmos valores de $R_1$, $R_2$, $R_3$ e $R_f$ o valor de tensão elétrica de saída da ponte é diferente de zero. Isto é causado devido ao desbalanceamento da ponte causado pela resistência elétrica dos fios de conexão do sensor, representados por $R_{f1}$ e $R_{f2}$. Caso o sensor tenha uma variação pequena de resistência elétrica, o \textit{bias} causado pelas resistências elétrica em série pode ser muito significante e gerar erros. Para reduzir o impacto dessa resistência elétrica em série, pode-se utilizar o método de medida a 3 fios, onde um terceiro fio é conectado diretamente entre o sensor e um dos terminais do voltímetro, conforme Figura \ref{fig:wheatstone-3wire}.
 
 \begin{figure}[H]
 \centering
@@ -603,7 +603,7 @@ Conforme observa-se na figura \ref{fig:wheatstone-wire-model}, para os mesmos va
 
 \subsection{Medição a 4 fios}
 
-Embora o método a 3 fios melhore bastante a qualidade da medida, há um offset dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de \textbf{método a 4 fios}. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e através de lei de Ohm, pode-se extrair o valor de resistência do sensor. Na figura \ref{fig:4wire-circuit} está apresentado o esquemático elético equivalente deste método.
+Embora o método a 3 fios melhore bastante a qualidade da medida, há um \textit{offset} dependente de $R_{f2}$ que considerando o comprimento do fio pode ser significante e afetar o resultado para sensores com baixas resistências elétricas associado com pequenas variações. Para solucionar este problema, há um outro método de medida que utiliza 4 fios e 2 instrumentos para realizar a medida com maior precisão, este método é denominado de \textbf{método a 4 fios}. Nele, é associado um amperímetro em série com o sensor e um voltímetro em paralelo com o mesmo e, através de lei de Ohm, pode-se extrair o valor de resistência elétrica do sensor. Na Figura \ref{fig:4wire-circuit} está apresentado o esquemático elético equivalente deste método,
 
 \begin{figure}[H]
 \centering
@@ -612,16 +612,16 @@ Embora o método a 3 fios melhore bastante a qualidade da medida, há um offset 
 \label{fig:4wire-circuit}
 \end{figure}
 
-onde $R_s$ é a resistência elétrica do sensor e $R_f$ são as resistências elétricas dos fios de conexão do sensor e dos instrumentos.
+\noindent onde $R_s$ é a resistência elétrica do sensor e $R_f$ são as resistências elétricas dos fios de conexão do sensor e dos instrumentos.
 
-Neste método, aplica-se diretamente a lei de Ohm conforme a equação \ref{eq:ohm}:
+Neste método, aplica-se diretamente a lei de Ohm conforme a Equação \ref{eq:ohm}:
 
 \begin{equation}
 	R_s = \frac{V_s}{I_s}
 	\label{eq:ohm}
 \end{equation}
 
-Independente da resistência elétrica dos fios, considerando que a impedância do voltímetro seja infinita ou muito grande, a queda de tensão provocada por $R_{f3}$ e $R_{f4}$ são negligenciáveis e a tensão medida sobre $R_s$ é a tensão real (respeitando a incerteza do instrumento). Para as resistências $R_{f1}$ e $R_{f2}$ a corrente elétrica que circula por elas é a mesma que circula por $R_s$, embora elas provoquem uma redução da corrente elétrica que circula pelo ramo, este é compensado na redução de tensão medida $V_s$. Logo, considerando-se somente o erro devido as conexões, o erro causado por esta construção é zero ou negligenciável.
+Independente da resistência elétrica dos fios, considerando que a impedância elétrica do voltímetro seja infinita ou muito grande, a queda de tensão elétrica provocada por $R_{f3}$ e $R_{f4}$ são negligenciáveis e a tensão medida sobre $R_s$ é a tensão real (respeitando a incerteza do instrumento). Para as resistências elétricas $R_{f1}$ e $R_{f2}$ a corrente elétrica que circula por elas é a mesma que circula por $R_s$, embora elas provoquem uma redução da corrente elétrica que circula pelo ramo, este é compensado na redução de tensão elétrica medida $V_s$. Logo, considerando-se somente o erro devido às conexões, o erro causado por esta construção é zero ou negligenciável.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
