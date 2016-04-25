@@ -48,7 +48,7 @@ Para a atividade do sensor potenciométrico, foi desenvolvido um pêndulo cujo e
 \end{figure}
 
 \noindent
-onde $\theta$ é o ângulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo. Para este experimento, foi utilizado o comprimento do pêndulo $L=27.5cm$(centímetro), medido com uma régua da Maped cuja resolução é de $0.1cm$.
+onde $\theta$ é o ângulo de inclinação do pêndulo em relação a origem (linha tracejada) e $L$ é o comprimento do pêndulo. Para este experimento, foi utilizado o comprimento do pêndulo $L=27.5cm$(centímetro), medido com uma régua Maped cuja resolução é de $0.1cm$.
 
 Este pêndulo pode ser modelado eletricamente pelo circuito da Figura \ref{fig:pendulo-equivalente}:
 
@@ -273,6 +273,21 @@ Conforme o experimento sem condicionamento, o experimento realizado foi fatorial
 
 Após a realização das medidas sem e com condicionamento, foi feito um ajuste de curvas no \textit{software} Wolfram Mathematica para obter a função de transferência experimental para cada um dos experimentos que deve ser dada na forma da Equação \ref{eq:pendulo-tf-forma-inversa}.
 
+Baseada  a Figura \ref{fig:pendulo} e  utilizando simples relações trigonométricas, pode-se calcular a amplitude $\theta_{0}$ pela Equações \ref{}:
+
+\begin{equation}
+	\theta_{0} = arccos(x)
+	\label{eq:pendulo-angulo0}
+\end{equation}
+\noindent onde $x = \dfrac{h-d}{L}$, sendo $h$ e $d$ são distâncias entre a base do pêndulo até o eixo e até o centro de massa respectivamente.
+
+A incerteza na medida do amplitude pode ser calculada com a Equação \ref{eq:pendulo-incerteza}
+\begin{equation}
+	(\delta\theta_{0})^2 = (\dfrac{\delta\theta_{0}}{\delta h})^2 \times (\delta h)^2 + (\dfrac{\delta\theta_{0}}{\delta d})^2 \times (\delta d)^2 + (\dfrac{\delta\theta_{0}}{\delta L})^2 \times (\delta L)^2
+	\label{eq:pendulo-incerteza}
+\end{equation}
+
+
 \subsection{Curva temporal do pêndulo}
 
 Para extrair a curva temporal do pêndulo, foi utilizada uma configuração igual à do experimento de calibração (página \pageref{sec:pendulo-calibracao-condicionado}) onde o programa do LabVIEW utilizado realizava a aquisição dos dados experimentais de forma temporal a uma taxa de amostragem de 250 $Hz$ com 2000 amostras, totalizando 8 segundos de aquisição de dados.
@@ -473,6 +488,8 @@ ou em sua forma inversa, dada pela Equação \ref{eq:pendulo-tf-com-cond-inv}:
 	\label{eq:pendulo-tf-com-cond-inv}
 \end{equation}
 
+Dessa forma, pode-se relacionar o ângulo do pêndulo e tensão elétrica beseados a Equação \ref{eq:pendulo-tf-com-cond}.
+
 O ajuste de curvas foi realizado com erro de linearidade dado conforme a Equação \ref{eq:pendulo-com-cond-rsquared}.
 
 \begin{equation}
@@ -637,10 +654,6 @@ Independente da resistência elétrica dos fios, considerando que a impedância 
 \todo{Tarefa para Casa: de posse da função de medição de seu sistema determinar a incerteza combinada deste sistema.}
 
 \todo{com os sinais armazenados pelo programa LabVIEW elaborar um procedimento para determinar o decaimento em função do tempo e discutir esse resultado.}
-
-\todo{Medição da Amplitude.}
-\todo{Medição de $\theta_0$}
-\todo{incertezas dos itens anteriores e dos comprimentos}
 
 \todo{amortecimento}
 
