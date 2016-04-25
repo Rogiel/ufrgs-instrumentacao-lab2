@@ -243,7 +243,6 @@ Para que seja possível comparar os resultados obtidos com e sem o circuito cond
 
 Para extrair a função de transferência experimental do pêndulo sem condicionamento, foi utilizado um multímetro digital Minipa ET-2082B com as especificações de precisão informadas pelo fabricante apresentada na Tabela \ref{tab:precisão-multimetro}. A coluna da precisão é apresentada na forma: $\pm$ (a$\%$ leitura + b dígitos), garantido por 1 ano. Como equipamento já tem mais de um ano de uso sem calibragem, esses dados não são totalmente fidedígnos. Foi utilizada a faixa de $20 V$.
 
-
 \begin{table}[H]
 \centering
 \caption{Especificações de precisão do multímetro Minipa ET-2082B para a medição de Tensão DC}
@@ -285,6 +284,35 @@ A incerteza na medida do amplitude pode ser calculada com a Equação \ref{eq:pe
 	\label{eq:pendulo-incerteza}
 \end{equation}
 
+
+\subsection{Período e amortecimento do pêndulo}
+
+O período do pêndulo pode ser aproximado pela equação \ref{eq:pendulo-periodo}:
+
+\begin{equation}
+	T = 2 \pi \sqrt{\frac{l}{g} \left[1 + \frac{1}{4} sen^2\left(\frac{\theta_0}{2}\right) + \frac{9}{64} sen^4\left(\frac{\theta_0}{2}\right) + ...\right]}
+	\label{eq:pendulo-periodo}
+\end{equation}
+
+\noindent onde $T$ é o período de oscilação do pêndulo em segundos, $l$ é o comprimento do pêndulo, $g$ é a aceleração local da gravidade e $\theta_0$ é a posição angular do pêndulo.
+
+Para ângulos pequenos, é possível desconsiderar o valores das componentes senoidais e expressar o período como a equação \ref{eq:pendulo-periodo-simples}:
+
+\begin{equation}
+	T = 2 \pi \sqrt{\frac{l}{g}}
+	\label{eq:pendulo-periodo-simples}
+\end{equation}
+
+Para determinar o constante de amortecimento do pêndulo, pode-se aproximar a parte de amortecimento da curva temporal do pêndulo por uma função exponencial dada na forma da equação \ref{eq:pendulo-amortecimento}:
+
+\begin{equation}
+	A(t) = \beta e^{\alpha t - t_0}
+	\label{eq:pendulo-amortecimento}
+\end{equation}
+
+\noindent onde $A(t)$ é a função de atenuação do pêndulo, $\beta$ e $\alpha$ são constantes da exponencial e $t_0$ é o deslocamento de tempo.
+
+A função da equação \ref{eq:pendulo-amortecimento} pode ser ajustada utilizando os máximos locais da curva temporal do pêndulo.
 
 \subsection{Curva temporal do pêndulo}
 
@@ -584,6 +612,21 @@ De forma gráfica, os pontos medidos na Tabela \ref{tab:pendulo-calibracao-condi
 
 Note-se que houve alguns pontos de medida da tensão elétrica que apresentam grande erro relativo na medida, uma vez que a inclusão do circuito condicionador pode-se influenciar nessas medidas. Por exemplo, nos pequenos ângulos da inclinação do pêndulo, a tensâo elétrica medida deveria ser valores próximos a zero, porém, observando a Figura \ref{fig:pendulo-tf-com-cond}, isso não ocorreu. Um dos possíveis explicação deste fato é que todos amplificadores operacionais possuem as tensões elétricas de \textit{offset}. Isso faz com que, mesmo a tensão elétrica medido em potenciômetro seja idealmente zero, mede-se na saída do circuito de condiocionador, a tensão elétrica de \textit{offset}, contribuindo o erro na medição.  
 
+\subsection{Período e amortecimento do pêndulo}
+O período do pêndulo, calculado pelo equação \ref{eq:pendulo-periodo-simples} é dado pela equação \ref{eq:pendulo-periodo-simples-resultado}:
+
+\begin{equation}
+	T = (1.05 \pm 0.2) s
+	\label{eq:pendulo-periodo-simples-resultado}
+\end{equation}
+
+O amortecimento do pêndulo é dado pela equação \ref{eq:pendulo-amortecimento-resultado}
+
+\begin{equation}
+	4.101 e^{3.007 - 0.446 t}
+	\label{eq:pendulo-amortecimento-resultado}
+\end{equation}
+
 \subsection{Curva temporal do pêndulo}
 
 A fim de obter uma curva de tensão elétrica em função do tempo, foi desenvolvido uma aplicação no LabVIEW que fosse capaz de exibir a curva extraída em tempo real na tela e pudesse exportar estes dados de forma que pudessem ser processados externamente. Na Figura \ref{fig:pendulo-LabVIEW} está mostrado uma imagem do programa utilizado.
@@ -657,9 +700,6 @@ As demais componentes contidas entre $0.1 Hz$ e $0.8 Hz$ são responsáveis pelo
 \todo{Tarefa para Casa: de posse da função de medição de seu sistema determinar a incerteza combinada deste sistema.}
 
 \todo{com os sinais armazenados pelo programa LabVIEW elaborar um procedimento para determinar o decaimento em função do tempo e discutir esse resultado.}
-
-\todo{amortecimento}
-\todo{medição do periodo}
 
 \todo{modelo de thevenin}
 \todo{grafico saida do pot vs angulo. qual erro?}
